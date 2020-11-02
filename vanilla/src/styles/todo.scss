@@ -1,0 +1,78 @@
+.todo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+  margin: 0 auto;
+  &__title {
+    color: $text;
+    font-size: 36px;
+    margin-top: 24px;
+  }
+}
+
+.todo-list {
+  margin-top: 24px;
+  border: 2px solid $primary;
+  border-radius: 8px;
+  width: 300px;
+  &__item {
+    border-bottom: 2px solid $primary;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    &:last-child {
+      border-bottom: none;
+    }
+    &-text {
+      color: $text;
+      font-size: 14px;
+      transition: all .3s ease;
+    }
+    &-remove {
+      color: $text;
+      font-weight: bold;
+      transition: all .3s ease;
+    }
+    &:hover {
+      .todo-list__item-text, .todo-list__item-remove {
+        color: $primary;
+      }
+    }
+  }
+}
+
+.todo-input {
+  margin-top: 12px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__field {
+    font-size: 16px;
+    flex-grow: 1;
+    border-radius: 8px;
+    border: 2px solid $text;
+    background-color: $bg;
+    padding: 8px;
+    color: $text;
+    outline: none;
+  }
+  &__btn {
+    margin-left: 16px;
+    padding: 8px 16px;
+    border: 2px solid $text;
+    background-color: $bg;
+    border-radius: 8px;
+    color: $text;
+    outline: none;
+    cursor: pointer;
+  }
+}
+
+.empty {
+  margin-top: 12px;
+  font-size: 24px;
+}

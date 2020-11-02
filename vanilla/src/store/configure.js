@@ -34,6 +34,8 @@ store.subscribe(() => {
   // Getting state
   const { auth } = store.getState()
 
+  if (!auth) return;
+
   // setting axios Authorization header
   setApiHeader('Authorization', `Bearer ${auth.token}`)
 

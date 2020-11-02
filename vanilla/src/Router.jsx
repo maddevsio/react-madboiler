@@ -2,12 +2,13 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 // pages
-import { Main } from './pages'
+import { Main, Todo } from './pages'
 
 function Router() {
   return (
     <Switch>
-      <Route path='/' component={Main} />
+      <Route exact path='/' component={Main} />
+      <Route exact path='/todo' component={Todo} />
     </Switch>
   )
 }
