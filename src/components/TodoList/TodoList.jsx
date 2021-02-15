@@ -1,7 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import TodoItem from '../TodoItem'
 
-export default function TodoList({ todos }) {
+const propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.object),
+}
+
+function TodoList({ todos }) {
 
   if(!Boolean(todos.length)) return <div className="empty">No todos :)</div>
 
@@ -11,3 +17,7 @@ export default function TodoList({ todos }) {
     </div>
   )
 }
+
+TodoList.propTypes = propTypes
+
+export default TodoList
