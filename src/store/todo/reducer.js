@@ -19,14 +19,14 @@ const initialState = {
   todos,
 }
 
-const deleteTodo = (todos, { id }) => todos.filter(todo => todo.id !== id)
+const onDeleteTodo = (todos, { id }) => todos.filter(todo => todo.id !== id)
 
 export const todosReducer = (state = initialState, action) => {
   switch(action.type) {
     case ADD_TODO:
       return { ...state, todos: [...state.todos, action.payload ] }
     case REMOVE_TODO:
-      return { ...state, todos: deleteTodo(state.todos, action.payload) }
+      return { ...state, todos: onDeleteTodo(state.todos, action.payload) }
     default:
       return state
   }
