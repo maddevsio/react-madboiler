@@ -41,4 +41,15 @@ export const createAction = (type, callback) => payload => {
   }
 }
 
+export const createAsyncAction = ({ DEFAULT, SUCCESS, FAILURE }, asyncCallback) => payload => {
+  return (dispatch, getState) => {
+    const action = createAction(DEFAULT)
+    const success = p => dispatch(createAction(SUCCESS)(p))
+    const failure = p => dispatch(createAction(FAILURE)(p))
+
+    dispatch(action(payload))
+    asyncCallback({ success, failure, dispatch, getState })
+  }
+}
+
 export const createSelector = (...selectors) => store => selectors.reduce((data, selector) => selector(data || store), null)

@@ -295,11 +295,283 @@ export default TodoList
 * [Хуки](https://ru.reactjs.org/docs/hooks-intro.html)
 
 ## Работа со стором(Redux)
-- TODO
+
+Для хранения данных в React-приложениях принято использовать redux. Redux - библиотека, позволяющая использовать контейнер предсказуемого состояния.
+[Подробнее в документации](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
+### Пример работы стора
+Разберем пример работы с redux на основе существующего todo-стора.
+Все необходимые файлы находятся в папке `src/store/[store-name]/*`.
+
+#### actions.js
+В этом файле хранятся actionTypes и actionCreators, необходимые для изменения состояния. Например, в сторе todo есть 3 action'а, которые меняют состояние списка тудушек:
+```javascript
+getInitialTodos() - для получения списка тудушек из localStorage
+addTodo(todo) - для добавления новой тудушки
+removeTodo(todo) - для удаления  существующей тудушки
+```
+
+### reducer.js
+В этом файле находится сам редьюсер, который отвечает за изменение стора после диспатча одного из экшенов:
+```javascript
+import { createReducer } from "../store.utils"
+import { ADD_TODO, GET_INITIAL_TODOS, REMOVE_TODO } from "./actions"
+
+// Начальное значение
+const initialState = {
+  todos: [],
+}
+
+// Вспомогательная функция для фильтрации тудушек после удаления
+const onDeleteTodo = (todos, { id }) => todos.filter(todo => todo.id !== id)
+
+// Редьюсер, созданный при помощи вспомогательной функции createReducer()
+export const todosReducer = createReducer(initialState, {
+  [GET_INITIAL_TODOS.DEFAULT](state, action) {
+    return { ...state, todos: [...action.payload] }
+  },
+  [ADD_TODO.DEFAULT](state, action) {
+    return { ...state, todos: [...state.todos, action.payload ] }
+  },
+  [REMOVE_TODO.DEFAULT](state, action) {
+    return { ...state, todos: onDeleteTodo(state.todos, action.payload) }
+  },
+})
+```
+
+### selectors.js
+Файл со вспомогательными функциями(селекторами) для получения данных из стора:
+```javascript
+import { createSelector } from '../store.utils'
+
+// Создаем селектор для получения списка тудушек
+export const getTodos = createSelector(
+  state => state.todos,
+  todos => todos.todos || [],
+)
+```
+
+### Создание стора
+1. Создаем папку с названием нового стора
+```bash
+mkdir src/store/notifications
+```
+2. Создаем необходимые файлы
+```bash
+touch src/store/notifications/reducer.js
+touch src/store/notifications/actions.js
+touch src/store/notifications/selectors.js
+```
+
+3. Создаем редьюсер в файле `reducer.js`
+```javascript
+import { createReducer } from "../store.utils"
+
+// Начальное значение
+const initialState = {
+  notifications: [],
+}
+// Редьюсер, созданный при помощи вспомогательной функции createReducer()
+export const notificationsReducer = createReducer(initialState, {})
+```
+
+4. Создаем нужные нам actionTypes и actionCreators в файле `actions.js`
+```javascrirpt
+import { createActionTypes, createAction } from '../store.utils'
+
+export const FETCH_NOTIFICATIONS = createActionTypes('FETCH_NOTIFICATIONS')
+export const MARK_NOTIFICATION_READ = createActionTypes('MARK_NOTIFICATION_READ')
+
+export const fetchNotificaions = createAction(FETCH_NOTIFICATIONS.DEFAULT)
+export const markNotificationRead = createAction(MARK_NOTIFICATION_READ.DEFAULT)
+```
+
+5. Добавляем actionTypes в `reducer.js`
+```javascript
+import { createReducer } from "../store.utils"
+import { FETCH_NOTIFCATIONS, MARK_NOTIFICATION_READ } from './actions'
+
+// Начальное значение
+const initialState = {
+  notifications: [],
+}
+
+const markRead = (notifications, id) => notifications.map(notification => notification.id === id ? ({ ...notification, read: true }) : notification)
+
+// Редьюсер, созданный при помощи вспомогательной функции createReducer()
+export const notificationsReducer = createReducer(initialState, {
+    [FETCH_NOTIFICATIONS.DEFAULT](state, action) {
+        return { ...state, notifications: action.payload }
+    },
+    [MARK_NOTIFICATION_READ.DEFAULT](state, action) {
+        return { ...state, notifications: markRead(state.notifications, action.payload) }
+    }
+})
+```
+
+6. Создаем селекторы для получения списка нотификации и нотификации по id в файле `selectors.js`
+```javascript
+import { createSelector } from '../store.utils'
+
+export const getNotificationsList = createSelector(
+    store => store.notifications, // получаем нужный store
+    notifications => notifications.notifications, // получаем список нотификаций
+)
+
+export const getNotificationById = id => createSelector(
+    store => store.notifications, // получаем нужный store
+    notifications => notifications.find(notification => notification.id === id)
+)
+```
+
+### Работа со стором в компонентах
+Для работы со стором в компонентах принято использовать вспомогательные хуки:
+* useSelector
+* useDispatch
+
+Пример:
+```javascript
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+// store
+import { getNotificationsList, getNotificationById } from '../../store/notifications/selectors'
+import { fetchNotificaions } from '../../store/notifications/actions'
+
+function Wrapper() {
+  // Используем селектор для получения списка
+  const notifications = useSelector(getNotificationsList)
+  
+  // Используем селектор для получения по id
+  const notificationById = useSelector(getNotificationById(1))  
+  
+  // Используем useDispatch для получения dispatch-функции
+  const dispatch = useDispatch()
+  // Создаем экшен
+  const fetchNotificaionsList = () => dispatch(fetchNotificaions())
+
+  return (
+    <TodoList 
+      notifications={notifications} 
+      fetchNotifications={fetchNotificaionsList} 
+    />
+  )
+}
+
+export default Wrapper
+```
+
+Также есть кастомный хук для более удобной работы с dispatch - `src/hooks/useActions.js`:
+Он позволяет избежать постоянного использования useDispatch()
+```javascript
+import useActions from '../hooks/useActions'
+...
+const actions = useActions({
+    fetchNotificaions,
+})
+...
+actions.fetchNotifications()
+...
+```
+
+### Асинхронные actions
+Для того чтобы делать запросы в API существуют асинхронные actions, работающие при помощи дополнительных библиотек. Есть несколько вариантов на выбор:
+* Redux-thunk - самый простой вариант, минимум настроек и сложности. **Используется в бойлере**
+* Redux-saga - библиотека, построенная на основе javascript-генераторов(experimental)
+* Redux-observable - на основе RXJS
+
+Если вам нужно строить большое приложение с большим кол-вом запросов в API и другими асинхронными действиями - ваш выбор `redux-saga`. Для простого приложения подойдет `redux-thunk`. `redux-observable` - только если вы знакомы с паттерном реактивного программирования
+
+#### Пример асинхронного экшена
+Для создания асинхронного thunk-экшена можно воспользоваться вспомогательной утилитой `createAsyncAction`:
+```javascript
+import { createActionTypes, createAction, createAsyncAction } from '../store.utils'
+
+// FETCH_TODOS содержит в себе 3 action-type - DEFAULT, SUCCESS и FAILURE
+export const FETCH_TODOS = createActionTypes('FETCH_TODOS')
+
+// Передаем обеькт action-types как 1 аргумент
+// Асинхронная функция как 2 аргумент
+// При вызове функции первым делом будет вызван action FETCH_TODOS.DEFAULT
+export const fetchTodos = createAsyncAction(FETCH_TODOS, async ({ success, failure, dispatch, getState }) => {
+    // тут асинхронный код
+    try {
+        const raw = await fetch('https://google.com')
+        const data = await raw.json()
+        // после завершения асинхронного кода вызываем success(payload)
+        // тут будет вызван action FETCH_TODOS.SUCCESS
+        success(data)
+    } catch(err) {
+        // тут будет вызван action FETCH_TODOS.FAILURE
+        failure(err)
+    }
+})
+```
+Последовательность действий после вызова `dispatch(fetchTodos(payload))`:
+```
+1. Вызов экшена FETCH_TODOS.DEFAULT
+2. Вызов асинхронной функции
+3. В случае успеха(блок try) - вызов экшена FETCH_TODOS.SUCCESS
+4. В случае ошибки(блок catch) - вызов экшена FETCH_TODOS.FAILURE
+```
+
 ## Работа с localStorage
-- TODO
+Для работы с localStorage можно использовать вспомогательные утилиты: `loadState` и `saveState`
+Пример:
+```
+import { saveState, loadState }  from '../utils/localStorage'
+const save = data => saveState(data, 'key')
+const load = () => loadState('key')
+```
 ## React-use и кастомные хуки
-- TODO
+
+#### React-use
+Это набор кастомных вспомогательных react-хуков, которые покрывают большую часть потребностей и позволяют не писать лишний код.
+[Список всех хуков](https://github.com/streamich/react-use)
+Самые полезные хуки:
+* [useDebounce](https://github.com/streamich/react-use/blob/master/docs/useDebounce.md)
+* [useLocalStorage](https://github.com/streamich/react-use/blob/master/docs/useLocalStorage.md)
+* [useMount](https://github.com/streamich/react-use/blob/master/docs/useMount.md)
+* [useUpdateEffect](https://github.com/streamich/react-use/blob/master/docs/useUpdateEffect.md)
+* [usePrevious](https://github.com/streamich/react-use/blob/master/docs/usePrevious.md)
+* [useBoolean](https://github.com/streamich/react-use/blob/master/docs/useToggle.md)
+* [useList](https://github.com/streamich/react-use/blob/master/docs/useList.md)
+
+#### Кастомные хуки
+Написание кастомных хуков - очень полезная штука, которая позволяет переиспользовать большое количество кода. Если видите код, который в будушем нужно будет переиспользовать - нужно сразу выносить его в хук.
+Кастомные хуки могут делать что угодно, от простого хранения данных, до запросов в апи и работе с ивентами. Пример небольшого кастомного хука, реализующего работу с API:
+```javascript
+import { useState } from 'react'
+import { useList, useToggle } from 'react-use'
+
+import fetchImages from './fetchImages'
+
+const useFetchImages = ({ source }) => {
+    const [images, imagesActions] = useList([])
+    const [isLoading, toggleLoading] = useToggle(false)
+    const [error, setError] = useState(null)
+    
+    const fetchImages = async () => {
+        toggleLoading(true)
+        try {
+            const data = await fetchImages(source)
+            imagesActions.set(data)
+        } catch(err) {
+            setError(err)
+        }
+        toggleLoading(false)
+    }
+    
+    return {
+        images,
+        isLoading,
+        error,
+        fetchImages,
+    }
+}
+
+export default useFetchImages
+```
+
 ## Утилиты(вспомогательные функции)
 - TODO
 ## Стили

@@ -5,7 +5,7 @@ import { rootReducer } from '.'
 
 
 function configureStore(preloadedState = {}) {
-  const middlewares = [createLogger({ collapsed: true }), thunk]
+  const middlewares = [thunk, createLogger({ collapsed: true })]
   const middlewareEnhancer = applyMiddleware(...middlewares)
 
   const store = createStore(rootReducer, preloadedState, middlewareEnhancer)

@@ -5,14 +5,18 @@ import TodoList from './TodoList'
 
 // store
 import { getTodos } from '../../store/todo/selectors'
-import { getInitialTodos as getTodosList } from '../../store/todo/actions'
+import { fetchTodos, getInitialTodos as getTodosList } from '../../store/todo/actions'
 
 function Wrapper() {
   const todos = useSelector(getTodos)
   const dispatch = useDispatch()
   const getInitialTodos = () => dispatch(getTodosList())
+  const fetchTodosList = () => dispatch(fetchTodos())
 
-  useMount(() => getInitialTodos())
+  useMount(() => {
+    getInitialTodos()
+    fetchTodosList()
+  })
 
   return <TodoList todos={todos} />
 }
