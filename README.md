@@ -1,4 +1,4 @@
-# React MAD Boiler (React 17)
+# React MAD Boiler
 
 Бойлер для быстрого старта проекта на React со всем необходимым внутри.
 
@@ -11,67 +11,64 @@
 * React-use
 * Prop-types
 * Axios
-
+* 
 ## Содержание
+1. [Первый запуск](#первый-запуск)
+2. [Структура](#структура)
+3. [Роутинг](#роутинг)
+4. [Компоненты](#компоненты)
+5. [Redux](#redux)
+6. [LocalStorage](#local-storage)
+7. [Hooks](#hooks)
+8. [Utils](#utils)
+9. [Axios](#axios)
+10. [Стили](#стили)
+11. [Тестирование](#тестирование)
+12. [Форматирование](#форматирование)
+13. [JSDoc](#jsdoc)
+14. [Запуск на проде](#запуск-на-проде)
+15. [Полезности](#полезности)
 
-1. Запуск проекта
-2. Структура проекта
-3. Роутинг
-4. Работа с компонентами
-5. Работа со стором(Redux)
-6. Работа с localStorage
-7. React-use и кастомные хуки
-8. Утилиты(вспомогательные функции)
-9. Стили(scss or styled-components)
-10. Тестирование(unit-tests)
-11. Форматирование/линтинг кода
-12. Запуск на проде
 
-
-## Запуск проекта
-
+# Первый запуск
 ### При помощи docker и docker-compose
-
-Этот вариант хорош тем, что не нужно устанавливать на вашу рабочую машину кучу npm зависимостей. Докер инкапсулирует весь этот мусор и не позволит загадить вашу систему.
-
-Для запуска проекта вам понадобится установленные [Docker](https://docs.docker.com/get-docker/) и [Docker compose](https://docs.docker.com/compose/install/)
-
+Этот вариант хорош тем, что вам не нужно устанавливать на вашу рабочую машину кучу всяких зависимостей. Докер инкапсулирует весь этот мусор и не позволит загадить вашу систему.
+Для запуска проекта вам понадобятся установленные [Docker](https://docs.docker.com/get-docker/) и [Docker compose](https://docs.docker.com/compose/install/)
 ```bash
 yarn docker:dev
 ```
-
-После того как Docker установит все необходимые зависимости и соберет приложение - в консоле появится надпись `Compiled successfully`. Это означает, что проект доступен на порту `3000` - [http://localhost:3000](http://localhost:3000)
+После того как Docker установит все необходимые зависимости и соберет приложение - в консоле появится надпись `Compiled successfully`. Это означает, что проект доступен на `3000` порту - [http://localhost:3000](http://localhost:3000)
 
 ### С использованием локальных зависимостей
-
 Если не хочется возиться с докером и есть установленные [Node.JS и npm(yarn)](https://nodejs.org/en/), то можно воспользоваться запуском проекта локально:
-
 1. Устанавливаем зависмости
-
 ```bash
 yarn
 ```
-
 2. Запускаем проект
-
 ```bash
 yarn start
 ```
-
 Приложение доступно по адресу [http://localhost:3000](http://localhost:3000)
 
-## Структура проекта
+# Структура
 ```
 .
 ├── README.md
 ├── package.json
 ├── yarn.lock
 ├── docker-compose.dev.yml
+├── docker-compose.prod.yml
+├── .env.example
+├── .eslintrc
+├── .gitlab-ci.yml
+├── .stylelintrc
 ├── public
 ├── cli
 ├── docs
 ├── docker
 │   ├── Dockerfile.dev
+│   ├── Dockerfile.prod
 ├── src
 │   ├── assets
 │   │   ├── images
@@ -88,7 +85,8 @@ yarn start
 │   ├── hooks
 │   ├── index.js
 │   ├── Router.jsx
-│   ├── setupTests.jsx
+│   ├── setupTests.js
+│   ├── test.utils.js
 │   ├── store
 │   │   ├── configure.js
 │   │   ├── index.js
@@ -98,21 +96,25 @@ yarn start
 │   │   │   ├── actions.js
 │   │   │   └── reducer.js
 │   │   │   └── selectors.js
+│   ├── utils
 ```
 
 **README.md** - Описание проекта
 **package.json** - Файл зависимостей
 **yarn.lock** - node_modules lock файл
 **docker-compose.dev.yml** - docker-compose файл для разработки
+**docker-compose.prod.yml** - docker-compose файл для сборки production-версии
+**.env.example** - env-example файл
+**.eslintrc** - файл конфигурации ESLint
+**.gitlab-ci.yml** - Файл конфигурации Gitlab CI
+**.stylelintrc** - файл конфигурации Stylelint
 
 **public** - Папка, созданная CRA, используется для запуска приложение(статика)
-
 **cli** - Папка со вспомогательными скриптами
-
 **docs** - Дополнительная документация
-
 **docker** - Папка с докерфайлами
 **docker/Dockerfile.dev** - докерфайл для разработки
+**docker/Dockerfile.prod** - докерфайл для production
 
 **src** - Основная папка для разработки
 
@@ -137,6 +139,8 @@ yarn start
 
 **src/Router.jsx** - Основной роутер
 
+**src/test.utils.js** - Утилиты для тестирования(testing-library)
+
 **src/store** - Папка redux-стора
 
 **src/store/configure.js** - Файл конфигурации redux-стора
@@ -147,8 +151,10 @@ yarn start
 **src/store/[store-name]/actions.js** - экшены
 **src/store/[store-name]/selectors.js** - селекторы
 
-## Роутинг
-Роутинг работает при помощи вспомогательной библиотеки - `react-router-dom`
+**src/utils** - папка с утилитами
+
+# Роутинг
+Роутинг работает при помощи вспомогательной библиотеки - [`react-router-dom`](https://reactrouter.com/web/guides/quick-start)
 
 Все роуты находятся в файле `src/Router.jsx`
 
@@ -171,7 +177,7 @@ function Router() {
 export default Router
 ```
 ### Добавление нового роута
-1. Создать новую страницу в папке `src/pages`:
+1. Создать новый файл страницы в папке `src/pages`:
 ```javascript
 // NewPage.jsx
 import React from 'react'
@@ -218,13 +224,12 @@ export default Router
 ```
 
 ### Дополнительная информация
-* Всю необходимую информацию о продвинутом использовании роутинга можно найти в [документации к react-router-dom](https://reactrouter.com/web/guides/quick-start)
-* Не захламляйте страницы версткой и логикой. Страницы(компоненты в папке pages) нужны только для разделения и понимания роутинга проекта. Используйте компоненты для верстки и логики. На страницах допустимо использование `react-helmet`, хотя и не обязательно
+* [Документация](https://reactrouter.com/web/guides/quick-start)
+* Не захламляйте страницы версткой и логикой. Страницы(компоненты в папке pages) нужны чтобы не было хаоса при создании новых роутов. Используйте компоненты для верстки и логики. На страницах рекомендуется использовать [`react-helmet`](https://www.npmjs.com/package/react-helmet)
 
-## Работа с компонентами
-При работе с компонентами нужно использовать современный подход с хуками.
-
-**Нельзя использовать классовые компоненты, поскольку они работают гораздо медленнее и вскоре перестанут поддерживаться**
+# Компоненты
+При работе с компонентами рекомендуется использовать современный подход(функциональные компоненты + хуки состояния).
+**Не рекомендуется использовать классовые компоненты, поскольку они работают гораздо медленнее и вскоре перестанут поддерживаться**
 
 ### Создание компонента
 1. Cоздать папку с названием компонента в `src/components`:
@@ -238,11 +243,11 @@ touch src/components/[ComponentName]/[ComponentName].jsx
 touch src/components/[ComponentName]/[ComponentName].test.jsx
 touch src/components/[ComponentName]/[ComponentName].styles.js
 ```
-PS: Позже будет добавлена npm-команда для создания компонента
+**P.S. Позже будет добавлена npm-команда для создания компонента**
 
 ### Описание файлов компонента
 
-**index.jsx** - основной файл компонента, в котором должна содержаться логика. Пример:
+**index.jsx** - основной файл компонента, в котором содержится логика. Пример:
 ```javascript
 import React from 'react'
 import { useMount } from 'react-use'
@@ -259,11 +264,10 @@ import { getInitialTodos as getTodosList } from '../../store/todo/actions'
 function Wrapper() {
   // Получение данных из стора
   const todos = useSelector(getTodos)
-  // Создание action-диспатчера
   const dispatch = useDispatch()
   const getInitialTodos = () => dispatch(getTodosList())
 
-  // Использование mount-хука
+  // Использование mount-хука для вызова getInitialTodos() экшена
   useMount(() => getInitialTodos())
 
   // возвращаем dumb-компонент для отображения с необходимыми props'ами
@@ -302,13 +306,13 @@ export default TodoList
 **[ComponentName].test.jsx** - файл с юнит-тестами
 **[ComponentName].styles.js** - файл со стилями(styled-components)
 
-### Полезные ссылки информация
+### Полезные ссылки
 * [PropTypes](https://ru.reactjs.org/docs/typechecking-with-proptypes.html)
 * [Хуки](https://ru.reactjs.org/docs/hooks-intro.html)
 
-## Работа со стором(Redux)
+# Redux
 
-Для хранения данных в React-приложениях принято использовать redux. Redux - библиотека, позволяющая использовать контейнер предсказуемого состояния.
+Для хранения данных в React-приложениях принято использовать redux - библиотеку, позволяющую использовать контейнер предсказуемого состояния.
 [Подробнее в документации](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
 ### Пример работы стора
 Разберем пример работы с redux на основе существующего todo-стора.
@@ -437,8 +441,8 @@ export const getNotificationById = id => createSelector(
 
 ### Работа со стором в компонентах
 Для работы со стором в компонентах принято использовать вспомогательные хуки:
-* useSelector
-* useDispatch
+* `useSelector`
+* `useDispatch`
 
 Пример:
 ```javascript
@@ -456,9 +460,8 @@ function Wrapper() {
   // Используем селектор для получения по id
   const notificationById = useSelector(getNotificationById(1))  
   
-  // Используем useDispatch для получения dispatch-функции
-  const dispatch = useDispatch()
   // Создаем экшен
+  const dispatch = useDispatch()
   const fetchNotificaionsList = () => dispatch(fetchNotificaions())
 
   return (
@@ -491,7 +494,7 @@ actions.fetchNotifications()
 * Redux-saga - библиотека, построенная на основе javascript-генераторов(experimental)
 * Redux-observable - на основе RXJS
 
-Если вам нужно строить большое приложение с большим кол-вом запросов в API и другими асинхронными действиями - ваш выбор `redux-saga`. Для простого приложения подойдет `redux-thunk`. `redux-observable` - только если вы знакомы с паттерном реактивного программирования
+Если вам нужно строить большое приложение с большим кол-вом запросов в API и другими асинхронными действиями, то ваш выбор - `redux-saga`. Для простого приложения подойдет `redux-thunk`. `redux-observable` - только если вы знакомы с паттерном реактивного программирования
 
 #### Пример асинхронного экшена
 Для создания асинхронного thunk-экшена можно воспользоваться вспомогательной утилитой `createAsyncAction`:
@@ -526,7 +529,7 @@ export const fetchTodos = createAsyncAction(FETCH_TODOS, async ({ success, failu
 4. В случае ошибки(блок catch) - вызов экшена FETCH_TODOS.FAILURE
 ```
 
-## Работа с localStorage
+# LocalStorage
 Для работы с localStorage можно использовать вспомогательные утилиты: `loadState` и `saveState`
 Пример:
 ```
@@ -534,10 +537,10 @@ import { saveState, loadState }  from '../utils/localStorage'
 const save = data => saveState(data, 'key')
 const load = () => loadState('key')
 ```
-## React-use и кастомные хуки
+# Hooks
 
 #### React-use
-Это набор кастомных вспомогательных react-хуков, которые покрывают большую часть потребностей и позволяют не писать лишний код.
+Это набор вспомогательных react-хуков, которые покрывают большую часть потребностей и позволяют каждый раз не изобретать велосипеды.
 [Список всех хуков](https://github.com/streamich/react-use)
 Самые полезные хуки:
 * [useDebounce](https://github.com/streamich/react-use/blob/master/docs/useDebounce.md)
@@ -549,8 +552,9 @@ const load = () => loadState('key')
 * [useList](https://github.com/streamich/react-use/blob/master/docs/useList.md)
 
 #### Кастомные хуки
-Написание кастомных хуков - очень полезная штука, которая позволяет переиспользовать большое количество кода. Если видите код, который в будушем нужно будет переиспользовать - нужно сразу выносить его в хук.
-Кастомные хуки могут делать что угодно, от простого хранения данных, до запросов в апи и работе с ивентами. Пример небольшого кастомного хука, реализующего работу с API:
+Написание кастомных хуков - очень полезная штука, которая позволяет переиспользовать большое количество кода. Если видите код, который в будушем нужно будет переиспользовать - старайтесь выносить его в хук.
+
+Кастомные хуки позволяют писать переиспользуемый функционал в рамках React-компонентов. Пример небольшого кастомного хука, реализующего работу с API. При этом этот хук свободно можно использовать в нескольких компонентах сразу и он будет работать одинаково:
 ```javascript
 import { useState } from 'react'
 import { useList, useToggle } from 'react-use'
@@ -584,7 +588,7 @@ const useFetchImages = ({ source }) => {
 export default useFetchImages
 ```
 
-## Утилиты(вспомогательные функции)
+# Utils
 Утилиты хранятся в папке `src/utils` в отдельных файлах(1 вайл - 1 утилита)
 
 #### Список доступных утилит
@@ -594,13 +598,13 @@ export default useFetchImages
 * `getRequestParams` - функция для получения значений get-параметров из адресной строки(window.location.search)
 * `localStorage` - работа с localStorage
 
-PS. Список будет обновляться.
+**PS: Список будет обновляться**
 
-## Axios
-Для работы с запросами в API удобнее всего использовать библиотеку `axios` и синтаксис `async/await`.
+# Axios
+Для работы с запросами в API удобнее всего использовать библиотеку [`axios`](https://github.com/axios/axios) и синтаксис `async/await`.
 
 #### Настройка `axios`
-Для настройки библиотеки `axios` можно воспользоваться файлом `src/config/api.js`. В функции `createAxiosInstance` есть объект базовых настроек, используемый при инициализации
+Конфигурация `axios` находится в файле `src/config/api.js`. 
 
 #### Вспомогательная функция `setApiHeader`
 Если нужно добавить заголовок в существующий инстанс axios'а, можно воспользоваться вспомогательной функцией `setApiHeader` Пример:
@@ -614,7 +618,7 @@ async function authenticate() {
   // Получаем токен
   const { token } = response
 
-  // Устанавливаем header для последующих авторизованных **запросов**
+  // Устанавливаем header для последующих авторизованных запросов
   setApiHeader('Authorization', `Bearer ${token}`)
 }
 
@@ -623,7 +627,7 @@ authenticate()
 
 **Note: Старайтесь всегда использовать синтаксис [async/await](https://learn.javascript.ru/async-await)**
 
-## Переменные окружения
+# Переменные окружения
 Для работы с переменными окружения используется несколько файлов:
 * `.env.example` - для хранения примеров ключей и значений
 * `.env` - для самих переменных(не добавляется в git)
@@ -652,21 +656,19 @@ axios.get(config.API_URL)
 **Note: Не забывайте перезапускать проект после добавления/обновления переменных**
 **Note 2: Переменные ВСЕГДА должны начинаться с `REACT_APP_`, иначе они не будут работать**
 
-## Стили
+# Стили
 Для написания стилей можно использовать несколько подходов:
 * Scss/BEM - стандарт написания стилей
 * Css-In-JS([styled-components](https://styled-components.com/docs/advanced#theming)) - рекомендованный вариант, гораздо проще и удобнее, нежели Scss/BEM
 
 **По дефолту настроено использование styled-components**
 
-## Тестирование
+# Тестирование
 Для тестирования компонентов(юнит-тесты) используется связка `Jest`+`React-testing-library`. Также подключены некоторые вспомогательные библиотеки.
 
 #### Ссылки
 [Jest](https://jestjs.io/docs/en/getting-started)
-
 [Testing-library](https://testing-library.com/)
-
 [React-testing-library](https://testing-library.com/docs/react-testing-library/intro)
 
 #### Запуск тестов
@@ -682,7 +684,7 @@ Tests coverage собирается после запуска команды `ya
 
 **Note: Для unit-тестов также установлен минимальный порог по coverage. Если coverage становится ниже 80% - тесты начинают падать**
 
-## Форматирование/линтинг кода
+# Форматирование
 Линетры отвечают за чистоту и порядок кода. Они позволяют исключить попадание говнокода в репозиторий
 #### Javascript-линтер
 В качестве линтера JS-кода используется [eslint](https://eslint.org/)
@@ -700,13 +702,15 @@ Tests coverage собирается после запуска команды `ya
 
 **Note: Также для запуска обоих линтеров сразу(JS+CSS) можно использовать команду `yarn lint:all`**
 
-## JSDoc
+# JSDoc
 Для поддержания читаемости кода на приемлимом уровне хорошем тоном считается использование JSDoc для описания сущностей вашего приложения.
 В проекте по дефолту не используется JSDoc, но вы можете легко его добавить, используя следующие полезные ссылки:
+
 [Documentation](https://jsdoc.app/)
+
 [eslint-plugin](https://www.npmjs.com/package/eslint-plugin-jsdoc)
 
-## Запуск на проде
+# Запуск на проде
 Для запуска проекта на проде есть простая команда `yarn docker:prod`
 
 Эта команда запускает докер, который делает следующее:
@@ -716,7 +720,7 @@ Tests coverage собирается после запуска команды `ya
 
 После успешной сборки страница будет доступна на `http://localhost`
 
-## Полезности
+# Полезности
 
 #### CLI
   **TODO**
