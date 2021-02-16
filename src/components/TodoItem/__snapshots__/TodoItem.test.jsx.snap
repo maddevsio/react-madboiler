@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoItem component should render correctly 1`] = `
+.c2 {
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c4 {
+  color: #ffffff;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c0 {
+  border-bottom: 2px solid #ff0000;
+  padding: 8px 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.c0:hover .c1,
+.c0:hover .c3 {
+  color: #ff0000;
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    <span
+      class="c1 c2"
+    >
+      TODO
+    </span>
+    <span
+      class="c3 c4"
+    >
+      X
+    </span>
+  </div>
+</div>
+`;
+
+exports[`TodoWrapper component should render correctly 1`] = `
+.c2 {
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c4 {
+  color: #ffffff;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c0 {
+  border-bottom: 2px solid #ff0000;
+  padding: 8px 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.c0:hover .c1,
+.c0:hover .c3 {
+  color: #ff0000;
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    <span
+      class="c1 c2"
+    >
+      TODO
+    </span>
+    <span
+      class="c3 c4"
+    >
+      X
+    </span>
+  </div>
+</div>
+`;

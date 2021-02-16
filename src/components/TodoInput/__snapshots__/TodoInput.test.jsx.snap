@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoInput component should correctly handle input change 1`] = `
+.c0 {
+  margin-top: 12px;
+  width: 300px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 {
+  font-size: 16px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  background-color: #212121;
+  padding: 8px;
+  color: #ffffff;
+  outline: none;
+}
+
+.c2 {
+  margin-left: 16px;
+  padding: 8px 16px;
+  border: 2px solid #ffffff;
+  background-color: #212121;
+  border-radius: 8px;
+  color: #ffffff;
+  outline: none;
+  cursor: pointer;
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    <input
+      class="c1"
+      placeholder="Enter new todo"
+      type="text"
+      value="new element"
+    />
+    <button
+      class="c2"
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;
+
+exports[`TodoInput component should render correctly 1`] = `
+.c0 {
+  margin-top: 12px;
+  width: 300px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 {
+  font-size: 16px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  background-color: #212121;
+  padding: 8px;
+  color: #ffffff;
+  outline: none;
+}
+
+.c2 {
+  margin-left: 16px;
+  padding: 8px 16px;
+  border: 2px solid #ffffff;
+  background-color: #212121;
+  border-radius: 8px;
+  color: #ffffff;
+  outline: none;
+  cursor: pointer;
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    <input
+      class="c1"
+      placeholder="Enter new todo"
+      type="text"
+      value=""
+    />
+    <button
+      class="c2"
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;
+
+exports[`TodoWrapper component should render correctly 1`] = `
+.c0 {
+  margin-top: 12px;
+  width: 300px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 {
+  font-size: 16px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  background-color: #212121;
+  padding: 8px;
+  color: #ffffff;
+  outline: none;
+}
+
+.c2 {
+  margin-left: 16px;
+  padding: 8px 16px;
+  border: 2px solid #ffffff;
+  background-color: #212121;
+  border-radius: 8px;
+  color: #ffffff;
+  outline: none;
+  cursor: pointer;
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    <input
+      class="c1"
+      placeholder="Enter new todo"
+      type="text"
+      value=""
+    />
+    <button
+      class="c2"
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;

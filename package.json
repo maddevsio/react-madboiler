@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.7.1",
     "axios": "^0.21.0",
     "node-sass": "^4.0.0",
     "prop-types": "^15.7.2",
@@ -31,7 +31,9 @@
     "lint:all": "yarn lint:css && yarn lint:js",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test --watchAll",
+    "test:coverage": "yarn test --coverage",
+    "test:ci": "CI=true yarn test:coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^5.0.3",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -63,10 +66,23 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "jest-styled-components": "^7.0.3",
     "prettier": "^2.2.1",
     "stylelint": "^13.10.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": -10
+      }
+    },
+    "coverageReporters": ["html", "text"],
+    "coveragePathIgnorePatterns": ["/node_modules", "/src/styles/*", "/src/assets/*", "/src/test.utils.js", "/src/index.js", "/src/config/*"]
   }
 }

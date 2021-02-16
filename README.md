@@ -685,8 +685,6 @@ axios.get(config.API_URL)
 [Documentation](https://jsdoc.app/)
 [eslint-plugin](https://www.npmjs.com/package/eslint-plugin-jsdoc)
 
-## Gitlab pages
-  **TODO**
 ## Запуск на проде
 Для запуска проекта на проде есть простая команда `yarn docker:prod`
 

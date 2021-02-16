@@ -14,5 +14,5 @@ export const getRequestParams = (query, keys) =>
     const match = query.match(regexp)
     if (!match && query.includes(key)) return [...acc, true]
     if (match && match[1]) return [...acc, match[1]]
-    return acc
+    return [...acc, undefined]
   }, [])

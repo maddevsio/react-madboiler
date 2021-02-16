@@ -1,7 +1,7 @@
 import { createReducer } from '../store.utils'
 import { ADD_TODO, GET_INITIAL_TODOS, REMOVE_TODO } from './actions'
 
-const initialState = {
+export const initialState = {
   todos: [],
 }
 

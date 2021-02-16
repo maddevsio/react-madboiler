@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component should render correctly 1`] = `
+.c2 {
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c3 {
+  width: 170px;
+}
+
+.c4 {
+  font-size: 36px;
+  margin: 16px 0;
+}
+
+.c5 {
+  color: #61dafb;
+  font-weight: bold;
+  margin: 0 5px;
+  display: inline;
+}
+
+.c6 {
+  color: #ff0000;
+  font-weight: bold;
+  margin: 0 5px;
+  display: inline;
+}
+
+.c0 {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background-color: #212121;
+  color: #ffffff;
+}
+
+.c1 {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  right: 20px;
+  bottom: 20px;
+  background-image: url(../assets/images/react.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-animation: fvtopB 2.5s linear infinite;
+  animation: fvtopB 2.5s linear infinite;
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    <div
+      class="c1"
+    />
+    <div
+      class="c2"
+    >
+      <img
+        alt="MAD DEVS"
+        class="c3"
+        src="md.svg"
+      />
+      <h2
+        class="c4"
+      >
+        React MAD Boiler
+      </h2>
+      <p
+        class=""
+      >
+        Simple boilerplate for
+        <a
+          class="c5"
+          color="react"
+          href="https://ru.reactjs.org/"
+          target="_blank"
+        >
+          React
+        </a>
+        from
+        <a
+          class="c6"
+          color="primary"
+          href="https://maddevs.io/"
+          target="_blank"
+        >
+          Mad Devs
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+`;

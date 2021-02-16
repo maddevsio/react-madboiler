@@ -18,7 +18,7 @@ function TodoInput({ addTodo }) {
 
   return (
     <Wrapper>
-      <Input type="text" value={value} onChange={e => setValue(e.target.value)} />
+      <Input placeholder="Enter new todo" type="text" value={value} onChange={e => setValue(e.target.value)} />
       <Button onClick={handleAddTodo}>Add</Button>
     </Wrapper>
   )
