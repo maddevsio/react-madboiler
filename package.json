@@ -2,17 +2,12 @@
   "name": "vanilla-boiler",
   "version": "0.1.0",
   "private": true,
-  "lint-staged": {
-    "*.+(js|jsx)": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
+    "husky": "^5.0.9",
     "node-sass": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
@@ -68,7 +63,6 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "lint-staged": "^10.5.4",
-    "pre-commit": "^1.2.2",
     "prettier": "^2.2.1",
     "stylelint": "^13.10.0",
     "stylelint-config-recommended": "^3.0.0",
