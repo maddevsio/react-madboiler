@@ -679,13 +679,17 @@ axios.get(config.API_URL)
 
 **Note: Также для запуска обоих линтеров сразу(JS+CSS) можно использовать команду `yarn lint:all`**
 
-#### Pre-commit хук
-  **TODO**
 ## JSDoc
-  **TODO**
+Для поддержания читаемости кода на приемлимом уровне хорошем тоном считается использование JSDoc для описания сущностей вашего приложения.
+В проекте по дефолту не используется JSDoc, но вы можете легко его добавить, используя следующие полезные ссылки:
+[Documentation](https://jsdoc.app/)
+[eslint-plugin](https://www.npmjs.com/package/eslint-plugin-jsdoc)
+
 ## Gitlab pages
   **TODO**
 ## Запуск на проде
+  **TODO**
+## CLI
   **TODO**
 ## Полезности
   **TODO**

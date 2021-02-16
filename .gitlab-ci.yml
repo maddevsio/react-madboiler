@@ -8,7 +8,6 @@ stages:
   - build
   - lint
   - test
-  - deploy
   - pages
 
 install_dependencies:
@@ -29,3 +28,13 @@ test:
   script:
     - yarn test
 
+pages:
+  stage: pages
+  artifacts:
+    paths:
+      - public/
+  script:
+    - yarn build
+  only:
+    - master
+  retry: 2
