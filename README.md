@@ -2,6 +2,16 @@
 
 Бойлер для быстрого старта проекта на React со всем необходимым внутри.
 
+# Стек технологий
+* React v17
+* Redux
+* Redux-thunk
+* React-router-dom
+* Styled-components
+* React-use
+* Prop-types
+* Axios
+
 ## Содержание
 
 1. Запуск проекта
@@ -30,7 +40,7 @@
 yarn docker:dev
 ```
 
-После того как Docker установит все необходимые зависимости и соберет приложение - в консоли появится надпись `Compiled successfully`. Это означает, что проект доступен на порту `3000` - [http://localhost:3000](http://localhost:3000)
+После того как Docker установит все необходимые зависимости и соберет приложение - в консоле появится надпись `Compiled successfully`. Это означает, что проект доступен на порту `3000` - [http://localhost:3000](http://localhost:3000)
 
 ### С использованием локальных зависимостей
 
@@ -182,6 +192,7 @@ import NewPage from './NewPage'
 export {
   Main,
   Todo,
+  NewPage,
 }
 ```
 
@@ -574,11 +585,21 @@ export default useFetchImages
 
 ## Утилиты(вспомогательные функции)
 - TODO
+## Axios
+- TODO
 ## Стили
 - TODO
 ## Тестирование
 - TODO
 ## Форматирование/линтинг кода
 - TODO
+## JSDoc
+- TODO
+## Примеры
+- TODO
+## Gitlab pages
+- TODO
 ## Запуск на проде
+- TODO
+## Полезности
 - TODO
