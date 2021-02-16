@@ -29,7 +29,8 @@
     "lint:js:fix": "eslint --ext jsx,js --fix src/",
     "lint:all": "yarn lint:css && yarn lint:js",
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
