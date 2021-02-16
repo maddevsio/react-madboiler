@@ -2,14 +2,9 @@
   "name": "vanilla-boiler",
   "version": "0.1.0",
   "private": true,
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.+(js|jsx)": [
-      "yarn lint-staged",
+      "eslint --fix",
       "git add"
     ]
   },
@@ -39,7 +34,6 @@
     "lint:js": "eslint --ext jsx,js src/",
     "lint:js:fix": "eslint --ext jsx,js --fix src/",
     "lint:all": "yarn lint:css && yarn lint:js",
-    "lint-staged": "eslint --fix && stylelint",
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
@@ -73,8 +67,8 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^5.0.9",
     "lint-staged": "^10.5.4",
+    "pre-commit": "^1.2.2",
     "prettier": "^2.2.1",
     "stylelint": "^13.10.0",
     "stylelint-config-recommended": "^3.0.0",
