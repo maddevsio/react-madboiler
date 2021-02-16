@@ -7,8 +7,8 @@ import { Main, Todo } from './pages'
 function Router() {
   return (
     <Switch>
-      <Route exact path='/' component={Main} />
-      <Route exact path='/todo' component={Todo} />
+      <Route exact path="/" component={Main} />
+      <Route exact path="/todo" component={Todo} />
     </Switch>
   )
 }

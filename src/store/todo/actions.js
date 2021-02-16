@@ -6,12 +6,11 @@ export const GET_INITIAL_TODOS = createActionTypes('GET_INITIAL_TODOS', { succes
 export const ADD_TODO = createActionTypes('ADD_TODO', { success: false, failure: false })
 export const REMOVE_TODO = createActionTypes('REMOVE_TODO', { success: false, failure: false })
 
-
 export const fetchTodos = createAsyncAction(FETCH_TODOS, async ({ success, failure }) => {
   try {
     await new Promise(resolve => setTimeout(resolve, 2000))
     success()
-  } catch(err) {
+  } catch (err) {
     failure(err)
   }
 })

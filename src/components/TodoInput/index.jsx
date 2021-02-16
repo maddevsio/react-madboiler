@@ -7,7 +7,7 @@ import TodoInput from './TodoInput'
 function Wrapper(props) {
   const dispatch = useDispatch()
 
-  return <TodoInput {...props} addTodo={(text) => dispatch(addTodo({ text, id: uniqid() }))} />
+  return <TodoInput {...props} addTodo={text => dispatch(addTodo({ text, id: uniqid() }))} />
 }
 
 export default Wrapper

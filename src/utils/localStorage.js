@@ -7,7 +7,7 @@ export const saveState = (state = {}, name) => {
   }
 }
 
-export const loadState = (name) => {
+export const loadState = name => {
   try {
     const jsonState = window.localStorage.getItem(name)
     if (!jsonState) {

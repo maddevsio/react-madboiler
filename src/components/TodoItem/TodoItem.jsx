@@ -1,8 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { Wrapper, Text, Remove } from './TodoItem.styles'
 
-export default function TodoItem({ todo, removeTodo }) {
+const propTypes = {
+  todo: PropTypes.shape({
+    text: PropTypes.string,
+  }),
+  removeTodo: PropTypes.func.isRequired,
+}
+
+function TodoItem({ todo, removeTodo }) {
   return (
     <Wrapper>
       <Text>{todo.text}</Text>
@@ -10,3 +18,7 @@ export default function TodoItem({ todo, removeTodo }) {
     </Wrapper>
   )
 }
+
+TodoItem.propTypes = propTypes
+
+export default TodoItem

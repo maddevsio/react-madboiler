@@ -1,5 +1,5 @@
-import { createReducer } from "../store.utils"
-import { ADD_TODO, GET_INITIAL_TODOS, REMOVE_TODO } from "./actions"
+import { createReducer } from '../store.utils'
+import { ADD_TODO, GET_INITIAL_TODOS, REMOVE_TODO } from './actions'
 
 const initialState = {
   todos: [],
@@ -12,7 +12,7 @@ export const todosReducer = createReducer(initialState, {
     return { ...state, todos: [...action.payload] }
   },
   [ADD_TODO.DEFAULT](state, action) {
-    return { ...state, todos: [...state.todos, action.payload ] }
+    return { ...state, todos: [...state.todos, action.payload] }
   },
   [REMOVE_TODO.DEFAULT](state, action) {
     return { ...state, todos: onDeleteTodo(state.todos, action.payload) }

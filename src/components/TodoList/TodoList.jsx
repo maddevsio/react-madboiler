@@ -10,12 +10,13 @@ const propTypes = {
 }
 
 function TodoList({ todos }) {
-
-  if(!Boolean(todos.length)) return <div className="empty">No todos :)</div>
+  if (!todos.length) return <div className="empty">No todos :)</div>
 
   return (
     <Wrapper>
-      {todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}
+      {todos.map(todo => (
+        <TodoItem key={todo.id} todo={todo} />
+      ))}
     </Wrapper>
   )
 }

@@ -1,8 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
-import thunk from 'redux-thunk';
+import thunk from 'redux-thunk'
 import { rootReducer } from '.'
-
 
 function configureStore(preloadedState = {}) {
   const middlewares = [thunk, createLogger({ collapsed: true })]

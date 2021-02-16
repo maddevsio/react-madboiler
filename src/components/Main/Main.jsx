@@ -11,10 +11,14 @@ export default function Main() {
       <Logo src={logo} alt="MAD DEVS" />
       <Title>React MAD Boiler</Title>
       <Description>
-        Simple boilerplate for 
-        <Link href="https://ru.reactjs.org/" target="_blank" color="react">React</Link> 
-        from 
-        <Link href="https://maddevs.io/" target="_blank" color="primary">Mad Devs</Link>
+        Simple boilerplate for
+        <Link href="https://ru.reactjs.org/" target="_blank" color="react">
+          React
+        </Link>
+        from
+        <Link href="https://maddevs.io/" target="_blank" color="primary">
+          Mad Devs
+        </Link>
       </Description>
     </Wrapper>
   )

@@ -1,20 +1,29 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import { Wrapper, Input, Button } from './TodoInput.styles'
 
-export default function TodoInput({ addTodo }) {
+const propTypes = {
+  addTodo: PropTypes.func,
+}
+
+function TodoInput({ addTodo }) {
   const [value, setValue] = useState('')
 
   const handleAddTodo = () => {
-    if(!value) return
+    if (!value) return
     addTodo(value)
     setValue('')
   }
 
   return (
     <Wrapper>
-      <Input type="text" value={value} onChange={e => setValue(e.target.value)}/>
+      <Input type="text" value={value} onChange={e => setValue(e.target.value)} />
       <Button onClick={handleAddTodo}>Add</Button>
     </Wrapper>
   )
 }
+
+TodoInput.propTypes = propTypes
+
+export default TodoInput

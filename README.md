@@ -662,7 +662,12 @@ axios.get(config.API_URL)
 ## Тестирование
 - TODO
 ## Форматирование/линтинг кода
-- TODO
+#### Линтер JS
+
+#### Линтер css(styled-components)
+
+#### Pre-commit хук
+
 ## JSDoc
 - TODO
 ## Gitlab pages

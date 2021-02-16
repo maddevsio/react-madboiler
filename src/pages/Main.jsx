@@ -4,7 +4,6 @@ import Helmet from 'react-helmet'
 import Main from '../components/Main'
 
 export default function MainPage() {
-
   return (
     <>
       <Helmet>

@@ -3,13 +3,13 @@ import styled from 'styled-components'
 export const Text = styled.span`
   color: ${({ theme }) => theme.colors.text};
   font-size: 14px;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 `
 
 export const Remove = styled.span`
   color: ${({ theme }) => theme.colors.text};
   font-weight: bold;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 `
 
 export const Wrapper = styled.div`
