@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import TodoItem from '../TodoItem'
 
+import { Wrapper } from './TodoList.styles'
+
 const propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object),
 }
@@ -12,9 +14,9 @@ function TodoList({ todos }) {
   if(!Boolean(todos.length)) return <div className="empty">No todos :)</div>
 
   return (
-    <div className="todo-list">
+    <Wrapper>
       {todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}
-    </div>
+    </Wrapper>
   )
 }
 

@@ -1,13 +1,15 @@
 import React from 'react'
-import TodoInput from '../components/TodoInput'
-import TodoList from '../components/TodoList'
+import Helmet from 'react-helmet'
 
-export default function Todo() {
+import Todo from '../components/Todo'
+
+export default function TodoPage() {
   return (
-    <div className="todo">
-      <h2 className="todo__title">TODO APP EXAMPLE</h2>
-      <TodoList />
-      <TodoInput />
-    </div>
+    <>
+      <Helmet>
+        <title>Todo app | React MAD Boiler</title>
+      </Helmet>
+      <Todo />
+    </>
   )
 }

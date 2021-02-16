@@ -1,26 +1,9 @@
-import axios from 'axios'
-
+import { createAxiosInstance } from './api'
 /**
  * App config
  */
-const config = {
+export const config = {
   API_URL: process.env.REACT_APP_API_BASE_URL,
 }
 
-/**
- * Api config
- */
-const axiosConfig = {
-  baseURL: config.API_URL,
-}
-
-/**
- * Axios instance
- */
-const api = axios.create(axiosConfig)
-
-const setApiHeader = (key, value) => {
-  api.defaults.headers.common[key] = value
-}
-
-export { api, config, setApiHeader }
+export const { api, setApiHeader } = createAxiosInstance(config)

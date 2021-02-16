@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { Wrapper, Input, Button } from './TodoInput.styles'
+
 export default function TodoInput({ addTodo }) {
   const [value, setValue] = useState('')
 
@@ -9,8 +11,10 @@ export default function TodoInput({ addTodo }) {
     setValue('')
   }
 
-  return <div className="todo-input">
-    <input type="text" value={value} onChange={e => setValue(e.target.value)} className="todo-input__field"/>
-    <button className="todo-input__btn" onClick={handleAddTodo}>Add</button>
-  </div>
+  return (
+    <Wrapper>
+      <Input type="text" value={value} onChange={e => setValue(e.target.value)}/>
+      <Button onClick={handleAddTodo}>Add</Button>
+    </Wrapper>
+  )
 }
