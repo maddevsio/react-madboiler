@@ -24,6 +24,7 @@
   },
   "scripts": {
     "docker:dev": "docker-compose -f docker-compose.dev.yml up",
+    "docker:prod": "docker-compose -f docker-compose.prod.yml up",
     "lint:css": "stylelint './src/**/*.js'",
     "lint:js": "eslint --ext jsx,js src/",
     "lint:js:fix": "eslint --ext jsx,js --fix src/",
