@@ -1,6 +1,5 @@
 import * as actions from './actions'
 import { todosReducer, initialState } from './reducer'
-import * as selectors from './selectors'
 
 jest.useFakeTimers()
 
