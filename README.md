@@ -660,7 +660,28 @@ axios.get(config.API_URL)
 **По дефолту настроено использование styled-components**
 
 ## Тестирование
-  **TODO**
+Для тестирования компонентов(юнит-тесты) используется связка `Jest`+`React-testing-library`. Также подключены некоторые вспомогательные библиотеки.
+
+#### Ссылки
+[Jest](https://jestjs.io/docs/en/getting-started)
+
+[Testing-library](https://testing-library.com/)
+
+[React-testing-library](https://testing-library.com/docs/react-testing-library/intro)
+
+#### Запуск тестов
+Существует несколько команд для запуска тестов:
+`yarn test` - простой запуск тестов в watch-режиме
+`yarn test:coverage` - запуск тестов в watch-режиме + coverage
+`yarn test:ci` - запуск тестов без watch-режима + coverage + disable coloring
+
+
+#### Coverage
+Tests coverage собирается после запуска команды `yarn test:coverage`. В папке `./coverage` можно посмотреть развернутый coverage в 
+формате HTML(Istanbul)
+
+**Note: Для unit-тестов также установлен минимальный порог по coverage. Если coverage становится ниже 80% - тесты начинают падать**
+
 ## Форматирование/линтинг кода
 Линетры отвечают за чистоту и порядок кода. Они позволяют исключить попадание говнокода в репозиторий
 #### Javascript-линтер

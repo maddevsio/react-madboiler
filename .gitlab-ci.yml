@@ -27,6 +27,7 @@ test:
   stage: test
   script:
     - yarn test
+  coverage: /All\sfiles.*?\s+(\d+.\d+)/
 
 pages:
   stage: pages
