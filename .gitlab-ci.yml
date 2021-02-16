@@ -26,7 +26,7 @@ lint:
 test:
   stage: test
   script:
-    - yarn test
+    - yarn test:ci
   coverage: /All\sfiles.*?\s+(\d+.\d+)/
 
 pages:
