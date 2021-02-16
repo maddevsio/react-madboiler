@@ -1,0 +1,31 @@
+image: node:14.15.4
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - build
+  - lint
+  - test
+  - deploy
+  - pages
+
+install_dependencies:
+  stage: build
+  script:
+    - yarn
+  artifacts:
+    paths:
+      - node_modules/
+
+lint:
+  stage: lint
+  script:
+    - yarn lint:all
+
+test:
+  stage: test
+  script:
+    - yarn test
+
