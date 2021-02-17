@@ -3,15 +3,19 @@
 Бойлер для быстрого старта проекта на React со всем необходимым внутри.
 
 # Стек технологий
-* React v17
-* Redux
-* Redux-thunk
-* React-router-dom
-* Styled-components
-* React-use
-* Prop-types
-* Axios
-* 
+* [React](https://ru.reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Redux-thunk](https://github.com/reduxjs/redux-thunk)
+* [React-router-dom](https://reactrouter.com/web/guides/quick-start)
+* [Styled-components](https://styled-components.com/)
+* [React-use](https://github.com/streamich/react-use)
+* [Prop-types](https://www.npmjs.com/package/prop-types)
+* [Axios](https://github.com/axios/axios)
+* [Jest](https://jestjs.io/)
+* [Testing-library](https://testing-library.com/)
+* [ESlint](https://eslint.org/)
+* [Prettier](https://prettier.io/)
+
 ## Содержание
 1. [Первый запуск](#первый-запуск)
 2. [Структура](#структура)
@@ -766,6 +770,3 @@ yarn create:store {store-name}
 * `Prettier` - for autoformatting
 * `Path Intellisense` - intelliSense for imports
 * `ESLint` - lint highlight
-
-#### Полезные ссылки
-  **TODO**
