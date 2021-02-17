@@ -33,7 +33,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll",
     "test:coverage": "yarn test --coverage",
-    "test:ci": "CI=true yarn test:coverage --watchAll=false"
+    "test:ci": "CI=true yarn test:coverage --watchAll=false",
+    "create:component": "node cli/create-component",
+    "create:store": "node cli/create-store"
   },
   "eslintConfig": {
     "extends": [
@@ -83,6 +85,6 @@
       }
     },
     "coverageReporters": ["html", "text"],
-    "coveragePathIgnorePatterns": ["/node_modules", "/src/styles/*", "/src/assets/*", "/src/test.utils.js", "/src/index.js", "/src/config/*"]
+    "coveragePathIgnorePatterns": ["/node_modules", "/src/styles/*", "/src/assets/*", "/src/test.utils.js", "/src/index.js", "/src/config/*", "/cli"]
   }
 }

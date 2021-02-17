@@ -723,10 +723,49 @@ Tests coverage собирается после запуска команды `ya
 # Полезности
 
 #### CLI
-  **TODO**
+Для облегчения процесса создания множества файлов для компонентов и сторов(редьюсеров) были созданы следующие CLI-команды:
+
+1. Создание компонента
+```bash
+yarn create:component {ComponentName}
+```
+
+После выполнения этой команды в папке `src/components` будет создана папка `{ComponentName}` со всеми необохдимыми файлами(index, компонент, стили, тесты)
+
+2. Создание стора
+```bash
+yarn create:store {store-name}
+```
+
+После выполнения этой команды в папке `src/store` будет создана папка `{store-name}` со всеми необохдимыми файлами(actions, reducer, selectors, tests)
+
+#### VSCode-сниппеты
+Для ускорения написания кода в VSCode существует замечательный инструмент - сниппеты. Они позволяют разворачивать заранее заготовленные куски кода в нужном месте после вызова определнного алиаса.
+
+Для ускорения разработки было созданно несколько полезных для проекта сниппетов:
+* `mdocmp` - компонент с нуля в пустом файле(с импортами и всем небходимым)
+* `mdstyle` - файл стилей с импортом styled-components и созданным элементом
+* `mdcompunit` - файл юнит-тестов для компонента
+* `mdpage` - файл страницы
+* `mdhook` - файл кастомного хука
+* `mdreducer` - файл редьюсера
+* `mdreducerunit` - файл юнит-тестов для редьюсера
+* `mdactiontype` - строка для создания actionType
+* `mdaction` - строка для создания actionCreator-функции
+* `mdasyncaction` - строка для создания async actionCreator-функции
+* `mdselector` - строка для создания селектора
+
+Сниппеты автоматически доступны в `VSCode`, поскольку настроены для проекта.
+Все сниппеты можно увидеть и изменить/добавить новые в файле `.vscode/madboiler-snippets.code-snippets`
 
 #### Полезные экстеншены для VSCode
-  **TODO**
+* `vscode-styled-components` - поддержка styled-components
+* `Visual Studion IntelliCode` - intelliSense for VSCode(AI-assit)
+* `TODO Highlight` - highlight your #todos
+* `React PropTypes Intellisense` - intelliSense for PropTypes
+* `Prettier` - for autoformatting
+* `Path Intellisense` - intelliSense for imports
+* `ESLint` - lint highlight
 
 #### Полезные ссылки
   **TODO**
