@@ -27,9 +27,7 @@
         ]
       }
     ],
-    "no-unused-vars": [
-      "error"
-    ],
+    "no-unused-vars": 1,
     // react
     "react-hooks/exhaustive-deps": 0,
     "react/destructuring-assignment": 0,
