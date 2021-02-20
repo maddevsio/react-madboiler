@@ -743,6 +743,29 @@ yarn create:store {store-name}
 
 После выполнения этой команды в папке `src/store` будет создана папка `{store-name}` со всеми необохдимыми файлами(actions, reducer, selectors, tests)
 
+# Cypress
+Cypress is a JavaScript-based end-to-end testing framework.
+
+
+##### Why Cypress?
+You can have a 100% code coverage with unit-tests that test all your components in isolation, but your application might still fail when components start to communicate with each other. That's why you have to use Cypress. It can test anything that runs in a browser. 
+
+### Gettign started with Cypress
+
+##### 1. Check for [system requirements](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements)
+
+##### 2. Install Cypress via yarn:
+```yarn add cypress --dev``` 
+This will install Cypress locally as a dev dependency for a project.
+
+##### 3. Opening Cypress
+To launch Cypress Test Runner you have to run the following command:
+```yarn run cypress open```
+And after a moment it will be launched.
+
+
+For how to write tests and other things check the official [documentation](https://docs.cypress.io/)
+
 #### VSCode-сниппеты
 Для ускорения написания кода в VSCode существует замечательный инструмент - сниппеты. Они позволяют разворачивать заранее заготовленные куски кода в нужном месте после вызова определнного алиаса.
 
