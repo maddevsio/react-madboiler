@@ -862,8 +862,6 @@ For how to write tests and other things check the official [documentation](https
 - https://blog.logrocket.com/how-to-write-useful-end-to-end-tests-with-cypress/
 - https://softchris.github.io/pages/cypress.html#great-e2e-testing-with-cypress
 
-For how to write tests and other things check the official [documentation](https://docs.cypress.io/)
-
 **Plugins:**
 To prevent linting errors from popping up use [eslint-plugin-cypress
 ](https://www.npmjs.com/package/eslint-plugin-cypress) plugin.
