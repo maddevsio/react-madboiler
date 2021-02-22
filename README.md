@@ -31,7 +31,8 @@
 12. [Форматирование](#форматирование)
 13. [JSDoc](#jsdoc)
 14. [Запуск на проде](#запуск-на-проде)
-15. [Полезности](#полезности)
+15. [Cypress](#cypress)
+16. [Полезности](#полезности)
 
 
 # Первый запуск
@@ -723,6 +724,128 @@ Tests coverage собирается после запуска команды `ya
 * Запускает nginx, который будет отдавать статику на 80 порту
 
 После успешной сборки страница будет доступна на `http://localhost`
+
+# Cypress
+Cypress - это фреймворк для сквозного тестирования на основе JavaScript.
+
+##### Почему Cypress?
+Вы можете иметь 100% покрытие кода с помощью модульных тестов, которые тестируют все ваши компоненты изолированно, но ваше приложение все равно может дать сбой, когда компоненты начнут взаимодействовать друг с другом. Чтобы предотвратить возможные сбои нужно использовать Cypress. Cypress может тестировать все, что работает в браузере. 
+
+### Начало работы с Cypress
+
+##### 1. Проверьте [системные требования](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements)
+
+##### 2. Установите Cypress через yarn:
+```yarn add cypress --dev``` 
+Эта команда установит Cypress локально как dev зависимость для проекта.
+
+##### 3. Запуск Cypress
+Для запуска Cypress Test Runner вам необходимо выполнить следующую команду:
+```yarn run cypress open```
+И через мгновение он будет запущен. 
+
+
+### Как настроить и запустить тесты Cypress в CI?
+##### 1. [Настройка CI](https://docs.cypress.io/guides/guides/continuous-integration.html#Setting-up-CI)
+
+Конфигурация для поставщика GitLab CI, которая поможет вам начать работу: 
+`.gitlab-ci.yml:`
+```
+# first, install Cypress, then run all tests (in parallel)
+stages:
+  - build
+  - test
+
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
+
+# this job installs NPM dependencies and Cypress
+install:
+  image: cypress/base:10
+  stage: build
+
+  script:
+    - npm ci
+    # check Cypress binary path and cached versions
+    # useful to make sure we are not carrying around old versions
+    - npx cypress cache path
+    - npx cypress cache list
+    - $(npm bin)/print-env CI
+    - npm run cy:verify
+    - npm run cy:info
+
+# all jobs that actually run tests can use the same definition
+.job_template:
+  image: cypress/base:10
+  stage: test
+  script:
+    # print CI environment variables for reference
+    - $(npm bin)/print-env CI
+    # start the server in the background
+    - npm run start:ci &
+    # run Cypress test in load balancing mode
+    - npm run e2e:record -- --parallel --group "electrons on GitLab CI"
+  artifacts:
+    when: always
+    paths:
+      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
+    expire_in: 1 day
+
+# actual job definitions
+# all steps are the same, they come from the template above
+electrons-1:
+  extends: .job_template
+electrons-2:
+  extends: .job_template
+electrons-3:
+  extends: .job_template
+electrons-4:
+  extends: .job_template
+electrons-5:
+  extends: .job_template
+```
+
+Полную документацию о примерах CI можно найти  [здесь](https://docs.cypress.io/guides/guides/continuous-integration.html#Examples).
+
+##### 2. Запуск Cypress в CI
+Запуск Cypress в режиме непрерывной интеграции почти такой же, как его локальный запуск в вашем терминале. Обычно вам нужно сделать только две вещи:
+
+2.1 Установка Cypress
+```yarn add cypress --dev```
+
+2.2 Запуск Cypress
+`cypress run`
+
+##### 3. [Для записи тестов](https://docs.cypress.io/guides/guides/continuous-integration.html#To-record-tests)
+1. [Настройте свой проект на запись](https://docs.cypress.io/guides/dashboard/projects.html#Setup)
+2. Передайте флаг `--record` команде` cypress run` внутри CI.
+`cypress run --record --key = abc123`
+
+Прочтите [полное руководство](https://docs.cypress.io/guides/dashboard/introduction.html#Features) в Службе панели инструментов.
+
+### Написание тестов с Cypress
+О том, как писать тесты и прочее, читайте в официальной [документации](https://docs.cypress.io/)
+
+**Ссылки:**
+- https://www.valentinog.com/blog/cypress/
+- https://blog.logrocket.com/how-to-write-useful-end-to-end-tests-with-cypress/
+- https://softchris.github.io/pages/cypress.html#great-e2e-testing-with-cypress
+
+**Плагины:**
+Чтобы предотвратить появление ошибок линтинга, используйте [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress) плагин.
 
 # Полезности
 
