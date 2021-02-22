@@ -763,8 +763,111 @@ To launch Cypress Test Runner you have to run the following command:
 ```yarn run cypress open```
 And after a moment it will be launched.
 
+### How to setup and run Cypress tests in Continuous Integration
+##### 1. [Setting up CI](https://docs.cypress.io/guides/guides/continuous-integration.html#Setting-up-CI)
+
+A configuration for GitLab CI provider to help you get started:
+`.gitlab-ci.yml:`
+```
+# first, install Cypress, then run all tests (in parallel)
+stages:
+  - build
+  - test
+
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
+
+# this job installs NPM dependencies and Cypress
+install:
+  image: cypress/base:10
+  stage: build
+
+  script:
+    - npm ci
+    # check Cypress binary path and cached versions
+    # useful to make sure we are not carrying around old versions
+    - npx cypress cache path
+    - npx cypress cache list
+    - $(npm bin)/print-env CI
+    - npm run cy:verify
+    - npm run cy:info
+
+# all jobs that actually run tests can use the same definition
+.job_template:
+  image: cypress/base:10
+  stage: test
+  script:
+    # print CI environment variables for reference
+    - $(npm bin)/print-env CI
+    # start the server in the background
+    - npm run start:ci &
+    # run Cypress test in load balancing mode
+    - npm run e2e:record -- --parallel --group "electrons on GitLab CI"
+  artifacts:
+    when: always
+    paths:
+      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
+    expire_in: 1 day
+
+# actual job definitions
+# all steps are the same, they come from the template above
+electrons-1:
+  extends: .job_template
+electrons-2:
+  extends: .job_template
+electrons-3:
+  extends: .job_template
+electrons-4:
+  extends: .job_template
+electrons-5:
+  extends: .job_template
+```
+
+Full documentation about CI examples can be found [here](https://docs.cypress.io/guides/guides/continuous-integration.html#Examples).
+
+##### 2. Running Cypress in CI
+Running Cypress in Continuous Integration is almost the same as running it locally in your terminal. You generally only need to do two things:
+
+2.1 Install Cypress
+```yarn add cypress --dev```
+
+2.2 Run Cypress
+`cypress run`
+
+##### 3.[ To record tests](https://docs.cypress.io/guides/guides/continuous-integration.html#To-record-tests)
+1. [Set up your project to record](https://docs.cypress.io/guides/dashboard/projects.html#Setup)
+2. Pass the `--record` flag to `cypress run` within CI.
+`cypress run --record --key=abc123`
+
+Read [the full guide](https://docs.cypress.io/guides/dashboard/introduction.html#Features) on the Dashboard Service.
+
+### Writing tests with Cypress
+For how to write tests and other things check the official [documentation](https://docs.cypress.io/)
+
+**Links:**
+- https://www.valentinog.com/blog/cypress/
+- https://blog.logrocket.com/how-to-write-useful-end-to-end-tests-with-cypress/
+- https://softchris.github.io/pages/cypress.html#great-e2e-testing-with-cypress
 
 For how to write tests and other things check the official [documentation](https://docs.cypress.io/)
+
+**Plugins:**
+To prevent linting errors from popping up use [eslint-plugin-cypress
+](https://www.npmjs.com/package/eslint-plugin-cypress) plugin.
+
 
 #### VSCode-сниппеты
 Для ускорения написания кода в VSCode существует замечательный инструмент - сниппеты. Они позволяют разворачивать заранее заготовленные куски кода в нужном месте после вызова определнного алиаса.
