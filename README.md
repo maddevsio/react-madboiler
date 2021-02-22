@@ -744,29 +744,29 @@ yarn create:store {store-name}
 После выполнения этой команды в папке `src/store` будет создана папка `{store-name}` со всеми необохдимыми файлами(actions, reducer, selectors, tests)
 
 # Cypress
-Cypress is a JavaScript-based end-to-end testing framework.
+Cypress - это фреймворк для сквозного тестирования на основе JavaScript.
 
+##### Почему Cypress?
+Вы можете иметь 100% покрытие кода с помощью модульных тестов, которые тестируют все ваши компоненты изолированно, но ваше приложение все равно может дать сбой, когда компоненты начнут взаимодействовать друг с другом. Чтобы предотвратить возможные сбои нужно использовать Cypress. Cypress может тестировать все, что работает в браузере. 
 
-##### Why Cypress?
-You can have a 100% code coverage with unit-tests that test all your components in isolation, but your application might still fail when components start to communicate with each other. That's why you have to use Cypress. It can test anything that runs in a browser. 
+### Начало работы с Cypress
 
-### Gettign started with Cypress
+##### 1. Проверьте [системные требования](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements)
 
-##### 1. Check for [system requirements](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements)
-
-##### 2. Install Cypress via yarn:
+##### 2. Установите Cypress через yarn:
 ```yarn add cypress --dev``` 
-This will install Cypress locally as a dev dependency for a project.
+Эта команда установит Cypress локально как dev зависимость для проекта.
 
-##### 3. Opening Cypress
-To launch Cypress Test Runner you have to run the following command:
+##### 3. Запуск Cypress
+Для запуска Cypress Test Runner вам необходимо выполнить следующую команду:
 ```yarn run cypress open```
-And after a moment it will be launched.
+И через мгновение он будет запущен. 
 
-### How to setup and run Cypress tests in Continuous Integration
-##### 1. [Setting up CI](https://docs.cypress.io/guides/guides/continuous-integration.html#Setting-up-CI)
 
-A configuration for GitLab CI provider to help you get started:
+### Как настроить и запустить тесты Cypress в CI?
+##### 1. [Настройка CI](https://docs.cypress.io/guides/guides/continuous-integration.html#Setting-up-CI)
+
+Конфигурация для поставщика GitLab CI, которая поможет вам начать работу: 
 `.gitlab-ci.yml:`
 ```
 # first, install Cypress, then run all tests (in parallel)
@@ -836,36 +836,34 @@ electrons-5:
   extends: .job_template
 ```
 
-Full documentation about CI examples can be found [here](https://docs.cypress.io/guides/guides/continuous-integration.html#Examples).
+Полную документацию о примерах CI можно найти  [здесь](https://docs.cypress.io/guides/guides/continuous-integration.html#Examples).
 
-##### 2. Running Cypress in CI
-Running Cypress in Continuous Integration is almost the same as running it locally in your terminal. You generally only need to do two things:
+##### 2. Запуск Cypress в CI
+Запуск Cypress в режиме непрерывной интеграции почти такой же, как его локальный запуск в вашем терминале. Обычно вам нужно сделать только две вещи:
 
-2.1 Install Cypress
+2.1 Установка Cypress
 ```yarn add cypress --dev```
 
-2.2 Run Cypress
+2.2 Запуск Cypress
 `cypress run`
 
-##### 3.[ To record tests](https://docs.cypress.io/guides/guides/continuous-integration.html#To-record-tests)
-1. [Set up your project to record](https://docs.cypress.io/guides/dashboard/projects.html#Setup)
-2. Pass the `--record` flag to `cypress run` within CI.
-`cypress run --record --key=abc123`
+##### 3. [Для записи тестов](https://docs.cypress.io/guides/guides/continuous-integration.html#To-record-tests)
+1. [Настройте свой проект на запись](https://docs.cypress.io/guides/dashboard/projects.html#Setup)
+2. Передайте флаг `--record` команде` cypress run` внутри CI.
+`cypress run --record --key = abc123`
 
-Read [the full guide](https://docs.cypress.io/guides/dashboard/introduction.html#Features) on the Dashboard Service.
+Прочтите [полное руководство](https://docs.cypress.io/guides/dashboard/introduction.html#Features) в Службе панели инструментов.
 
-### Writing tests with Cypress
-For how to write tests and other things check the official [documentation](https://docs.cypress.io/)
+### Написание тестов с Cypress
+О том, как писать тесты и прочее, читайте в официальной [документации](https://docs.cypress.io/)
 
-**Links:**
+**Ссылки:**
 - https://www.valentinog.com/blog/cypress/
 - https://blog.logrocket.com/how-to-write-useful-end-to-end-tests-with-cypress/
 - https://softchris.github.io/pages/cypress.html#great-e2e-testing-with-cypress
 
-**Plugins:**
-To prevent linting errors from popping up use [eslint-plugin-cypress
-](https://www.npmjs.com/package/eslint-plugin-cypress) plugin.
-
+**Плагины:**
+Чтобы предотвратить появление ошибок линтинга, используйте [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress) плагин.
 
 #### VSCode-сниппеты
 Для ускорения написания кода в VSCode существует замечательный инструмент - сниппеты. Они позволяют разворачивать заранее заготовленные куски кода в нужном месте после вызова определнного алиаса.
