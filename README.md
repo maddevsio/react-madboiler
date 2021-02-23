@@ -32,7 +32,8 @@
 13. [JSDoc](#jsdoc)
 14. [Запуск на проде](#запуск-на-проде)
 15. [Cypress](#cypress)
-16. [Полезности](#полезности)
+16. [TypeScript](#typescript)
+17. [Полезности](#полезности)
 
 
 # Первый запуск
@@ -846,6 +847,59 @@ electrons-5:
 
 **Плагины:**
 Чтобы предотвратить появление ошибок линтинга, используйте [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress) плагин.
+
+# Как перейти на TypeScript?
+
+#### 1. Добавление TypeScript в Project
+```yarn add typescript @types/node @types/react @types/react-dom @types/jest```
+
+####  2. Добавление tsconfig.json
+Прежде чем мы сможем воспользоваться преимуществами TypeScript, нам нужно настроить это через `tsconfig.json`. Следующая команда создаст `tsconfig.json` файл:
+```npx tsc --init```
+
+#### 3. Настройка tsconfig.json
+```
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "jsx": "react",
+    "baseUrl": "./src"
+  },
+  "include": ["src", "internals/startingTemplate/**/*"]
+}
+```
+
+Следующим шагом нужно перенести соответствующие файлы на TypeScript.
+
+
+##### Полезные ссылки по TypeScript:
+- [Добавление TypeScript](https://create-react-app.dev/docs/adding-typescript/)
+- [Документация TypeScript](https://www.typescriptlang.org/docs/)
+- [Песочница TypeScript](https://www.typescriptlang.org/play?#code/PTAECUFMEMGMBdQEsDOpqgA4HtMFcAbaAJ1AKQCNiSBPUAM21NmJniQDsBzUPFSUp3gD6cSCgB0AWABQIUAElEmYtgBuSACbj0oAFLQ10AMoskmRNAop41BEmwcGTUCzaceGyAHdZ82NgAtjgckBzwaHweugZGpsTmiETceNBckKCQAB7CHCgOTrDQBASQmn5gesYAGtIyFaAAKjSYkPGJoCh4mDjEEfo1ADToHJpYqhraaBgJsAAWnZCI2PQN8C0Z8NjYBGhboLNzBHSB2NoEoHPY3q5BIWH9ARyhCHUNjdi8owI20KOX1yaG3aFlA3iYAGs0N4kPAFlA4IgAsFHA8UA0aNg8KBAtA6N4-pZxkhAgJQI5QOlQrMUAAuCoNAC0mSy0GCpVpVIESFgjPoeA49kc6LkYGZ2TZmA5XNmjNgRBQ-BFDQAYkhiDYwZAAOQlMjbCHoRBXG4ynnIcIiMTTVi8fhjfa4zANBEIW4o0LhSRNOaoZDTBjQPBZRmuxD8wXsRzFd33cL0+oydatUAqoOshAqgVCjgAYTuqPCAB4AAqqTBobK5TRoADeAF8AHygAC8slAoAAFCpcHTQGXe8MnsIcgB+WkjGgASlbzbTwcRWcjBXzHoeRb+NGbAB9QBxCBdd1VagBRUqk8KyK+iiBYrhHGgJkCq9OL7NRvMFz2IP0YM2wBh3wKMFfXmA5IHIHRHAaP5sDhMlk0gYYBwrCR+3LNA5mgPZPgoDI-nJCgACtIDdTtHWgCEMi6VgMSxUBNEcbVlGwgMVBJWEkDUSAZz+B05gyFC9g2MEkD1PCGlYRk+DKdA9gEhh1U1EguDwC8fyceDAOXRw3hvD47QyWFhkxbFQlkjAewrUBEITWQhCtWAMgAEWgYQhNAWt-WwAAOAA2AAGABGVzhAnGwEm4YZSUVNJIHC2xonra95AAdQyIpNIEwpWDc-DQFCyBVzjRBvFAhYZPkyAGkKjyHOIUQnOGPjwO+DUbIUzQ8r0p5NUK4rC3gCd5wzeAlxzAbvyLWqMObNsZA7bsMJnFtmyLdhSQYvLGhJSAW1rKzJFQXzApCvKmwOjCJBilA4vrItgA2yBGxSsBGl9NA3DygMIxzECeQWP1-1EuFdCEhojASKxSn+sCsJw0A8JGQiSNeH0Mq-B5tJzSSljwYg8kyWEBNIWD4OYTHwmxj9yVIfcSj094FLgknY0G0AAEESwUf1dHlVjGQobDZNRCQAAkBB1aYGnydkkHoJBZO4jVgJWDq3M57m7JkerGoyEbEVzBUUEm9cPKrMIa08+thmMeA8tba3m1rdtxl7CdwYWzp7bC0A7by68O34eB-d9pbIDUUP4r9n2kLdisPeW2d0N7V2ihKIXYAhccuxW5s1GwLRXdYNrOynYbXwQI3WNN4tNx3PcD1kZLE3kAAhUig34Dq-X5xVXAIrDuMRlmU+slqo9AZlYUubC1nBSkwm5ACVLUtFYYWEgMhk-jVDwe8sUQLS+8kV70YgGA3XIKhaHdHQYVB2FtTQa5NJE7QFY4TjhQacgqI68QGQKB4EsLaQIeAwKnFtMiFQkBsr5G4mhAAMksZ+iNIpcDWFcbuQhPhYlIFKPEXA97-BatkKUTB8r0B8Gzb8p9Ewkl6IgAAVHJC+iIGCqECKAbUuUEDagANxnwAJr4PjjaDIpkCF4AoOQACXMFDDBQJ8J+0ImCg3thCaI8E1i7Rsp8GSAxnLYAAvschRBOAAhuDPcExAoTa3Ieoi0wgGpiDHnWV2wBmGsPetvfgxA0EcDZBkZhwBXZBNJAlDBQivZeNYcYK4hB+IZAiUAjIJdtCsDGJYigOwxihNduxJgsIaA51yTsGAHBm7Xl6ogMsQgABywSJxhgkCqXMpZZqOyWr2POnli54wJl2V2HYiyaC4i9L2HZRmYG9jQUo+0vKMHCOlJA94hriIkEUhI6xQCjlAAAIlyQQTQBzQATgORwJguICBnPrBdQ6EhUn3WAJgSZ0zQAPXGWod5oApzVNbmAUR2JMpYCIPiYmAC9w0JgYNNBfA4qIwgtcbWtS-YmgAKr+JaZfeAbSOlCTml2Q6fSXZe1YPAfGThOmNOCXuYJLYDkNLKGc4AkyW7vGBGYUEXQejqLQD2SY0QHIlFQGEHBeQtDVRvFpBsFpkZuUSsA4Q15SiIBkgTOlLZDm5h+JAJABzZBooSdcO2lDNBYoEDixE+LOm9iJT0ispKBmUqGTS8ITTNqpP2hq55xJim7LZQCzlrQQSlUhNCSFpxMlODDLcbQ+jsDDBJpI+imUZaQE2FhJEWIqYtWDvmAUxpDAY2IKwBAxwkVhAtNQstZQ1gGO7vuQIeF2pC3tOSLKRkv7sBjEYAgeAMiYFYrJXBDQZJRz0owpxXkJ2x2GDJE89BqFunrJwoIPC+HwEETU4UiBC2WmICeVk7IMjarLsnMlHY0UAG0AhFqUUsA98AAC6js515U7AFKcMTXaLuXaReAnYL2rX6VMhiJi17hAkOweAMNtUAANgWuDkVRMYAASWs97whrqeigBDMSOz1h-YHcCrqnCdhGZ875vyPlFjech+UPI0OeWw-AXDu0UAPTeVR0ZyqthOEcEbZj+0QPNgLbmoDbHQAAGpQBBSnE2Xj0zhNZxxNKj5ozgD8ccLRz5wAaOuxIzIDlN440tWaKG7lP4Ay5RKDQYYdnK0UDWfozAPIGjKqhRGLq6ligSPGEsXZKAbkEAnJZto1mZbdCYWgY8zV-haVYJqP0WFRilDGBQOgWkwxrBaB4NA9AuEFUgJ-WEEE6ARc0HpeQjGCKlBIE4KB+FckgLtNEOND8FgRbDQ0IrG74Ld3yMIOkDIbxzHgPABOIAuDExkRIZEj0NgoGs3KASbkUACSWCgYAW7GSIRWwkCwa22CbczfABoE2pt0hAJALg94YDVYcMAe9GpxDABkvt5bq2tiMm0NxAguBGR7egD0ORbkCginkFd6bwBSgA+6BIWb8AngvGENVxbhANp5WB7iuUlN4CMmHZNgQeRGRda+60Q7iRGQACZGQ+QZ7TgAnMzgKsAACsQU-LM4AMwc6AA)
+
+***Шпаргалки по TypeScript***
+- [Все шпаргалки по React + TypeScript](https://github.com/typescript-cheatsheets/react)
+- [TypeScript 4.0 Cheat Sheet](https://www.sitepen.com/blog/typescript-cheat-sheet)
+- [A collection of cheatsheets](https://devhints.io/typescript)
+
+***Примеры приложений***
+- [Create React App TypeScript Todo Example 2020](https://github.com/laststance/create-react-app-typescript-todo-example-2020)
+- [Ben Awad's 14 hour Fullstack React/GraphQL/TypeScript Tutorial](https://www.youtube.com/watch?v=I6ypD7qv3Z8)
+- [Cypress Realworld App](https://github.com/cypress-io/cypress-realworld-app)
 
 # Полезности
 
