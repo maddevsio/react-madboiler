@@ -862,27 +862,30 @@ electrons-5:
 ```
 {
   "compilerOptions": {
-    "noImplicitAny": false,
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "jsx": "react",
-    "baseUrl": "./src"
+    "noImplicitAny": false, /* Raise error on expressions and declarations with an implied any type */
+    "target": "es5", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+    "lib": ["dom", "dom.iterable", "esnext"], /* List of library files to be included in the compilation */
+    "allowJs": true, /* Allow javascript files to be compiled. */
+    "skipLibCheck": true, /* Skip type checking of all declaration files (*.d.ts) */
+    "esModuleInterop": true, /* Emit __importStar and __importDefault helpers for runtime babel ecosystem compatibility and enable --allowSyntheticDefaultImports for typesystem compatibility */
+    "allowSyntheticDefaultImports": true, /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking */
+    "strict": true, /* Enable all strict type checking options.
+Enabling --strict enables --noImplicitAny, --noImplicitThis, --alwaysStrict, --strictBindCallApply, --strictNullChecks, --strictFunctionTypes and --strictPropertyInitialization */
+    "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
+    "module": "esnext", /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "moduleResolution": "node", /* Determine how modules get resolved. Either "Node" for Node.js/io.js style resolution, or "Classic" */
+    "resolveJsonModule": true, /* Include modules imported with .json extension. */
+    "isolatedModules": true, /* Perform additional checks to ensure that separate compilation (such as with transpileModule or @babel/plugin-transform-typescript) would be safe. */
+    "noEmit": true, /* Do not emit outputs. */
+    "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement /*
+    "jsx": "react", /* Support JSX in .tsx files: "react", "preserve", "react-native" */
+    "baseUrl": "./src" /* Base directory to resolve non-relative module names */
   },
   "include": ["src", "internals/startingTemplate/**/*"]
 }
 ```
+
+Если вам нужна дополнительная информация по настройке tsconfig, ознакомьтесь с [параметрами компилятора](https://www.typescriptlang.org/docs/handbook/compiler-options.html#compiler-options).
 
 #### 4. Превращение файлов JavaScript в файлы TypeScript
 Далее вам необходимо изменить расширение всех файлов проекта с .js(x) на .ts(x). Это позволит компилятору TypeScript начать индексировать эти файлы и использовать все возможности TypeScript.
