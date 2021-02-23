@@ -881,7 +881,7 @@ Enabling --strict enables --noImplicitAny, --noImplicitThis, --alwaysStrict, --s
     "jsx": "react", /* Support JSX in .tsx files: "react", "preserve", "react-native" */
     "baseUrl": "./src" /* Base directory to resolve non-relative module names */
   },
-  "include": ["src", "internals/startingTemplate/**/*"]
+  "include": ["src"]
 }
 ```
 
