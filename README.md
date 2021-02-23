@@ -743,6 +743,7 @@ Cypress - это фреймворк для сквозного тестирова
 ##### 3. Запуск Cypress
 Для запуска Cypress Test Runner вам необходимо выполнить следующую команду:
 ```yarn run cypress open```
+
 И через мгновение он будет запущен. 
 
 
@@ -824,10 +825,10 @@ electrons-5:
 ##### 2. Запуск Cypress в CI
 Запуск Cypress в режиме непрерывной интеграции почти такой же, как его локальный запуск в вашем терминале. Обычно вам нужно сделать только две вещи:
 
-2.1 Установка Cypress
+2.1. Установка Cypress
 ```yarn add cypress --dev```
 
-2.2 Запуск Cypress
+2.2. Запуск Cypress
 `cypress run`
 
 ##### 3. [Для записи тестов](https://docs.cypress.io/guides/guides/continuous-integration.html#To-record-tests)
