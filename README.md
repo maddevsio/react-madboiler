@@ -32,7 +32,8 @@
 13. [JSDoc](#jsdoc)
 14. [Запуск на проде](#запуск-на-проде)
 15. [Cypress](#cypress)
-16. [Полезности](#полезности)
+16. [TypeScript](#typescript)
+17. [Полезности](#полезности)
 
 
 # Первый запуск
@@ -742,6 +743,7 @@ Cypress - это фреймворк для сквозного тестирова
 ##### 3. Запуск Cypress
 Для запуска Cypress Test Runner вам необходимо выполнить следующую команду:
 ```yarn run cypress open```
+
 И через мгновение он будет запущен. 
 
 
@@ -823,10 +825,10 @@ electrons-5:
 ##### 2. Запуск Cypress в CI
 Запуск Cypress в режиме непрерывной интеграции почти такой же, как его локальный запуск в вашем терминале. Обычно вам нужно сделать только две вещи:
 
-2.1 Установка Cypress
+2.1. Установка Cypress
 ```yarn add cypress --dev```
 
-2.2 Запуск Cypress
+2.2. Запуск Cypress
 `cypress run`
 
 ##### 3. [Для записи тестов](https://docs.cypress.io/guides/guides/continuous-integration.html#To-record-tests)
@@ -846,6 +848,69 @@ electrons-5:
 
 **Плагины:**
 Чтобы предотвратить появление ошибок линтинга, используйте [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress) плагин.
+
+# Как перейти на TypeScript?
+
+#### 1. Добавление TypeScript в проект
+```yarn add typescript @types/node @types/react @types/react-dom @types/jest```
+
+####  2. Добавление `tsconfig.json`
+Необходимо создать файл конфигурации tsconfig.json. Следующая команда поможет создать его:
+```npx tsc --init```
+
+#### 3. Настройка tsconfig.json
+```
+{
+  "compilerOptions": {
+    "noImplicitAny": false, /* Raise error on expressions and declarations with an implied any type */
+    "target": "es5", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+    "lib": ["dom", "dom.iterable", "esnext"], /* List of library files to be included in the compilation */
+    "allowJs": true, /* Allow javascript files to be compiled. */
+    "skipLibCheck": true, /* Skip type checking of all declaration files (*.d.ts) */
+    "esModuleInterop": true, /* Emit __importStar and __importDefault helpers for runtime babel ecosystem compatibility and enable --allowSyntheticDefaultImports for typesystem compatibility */
+    "allowSyntheticDefaultImports": true, /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking */
+    "strict": true, /* Enable all strict type checking options.
+Enabling --strict enables --noImplicitAny, --noImplicitThis, --alwaysStrict, --strictBindCallApply, --strictNullChecks, --strictFunctionTypes and --strictPropertyInitialization */
+    "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
+    "module": "esnext", /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "moduleResolution": "node", /* Determine how modules get resolved. Either "Node" for Node.js/io.js style resolution, or "Classic" */
+    "resolveJsonModule": true, /* Include modules imported with .json extension. */
+    "isolatedModules": true, /* Perform additional checks to ensure that separate compilation (such as with transpileModule or @babel/plugin-transform-typescript) would be safe. */
+    "noEmit": true, /* Do not emit outputs. */
+    "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement /*
+    "jsx": "react", /* Support JSX in .tsx files: "react", "preserve", "react-native" */
+    "baseUrl": "./src" /* Base directory to resolve non-relative module names */
+  },
+  "include": ["src"]
+}
+```
+
+Если вам нужна дополнительная информация по настройке tsconfig, ознакомьтесь с [параметрами компилятора](https://www.typescriptlang.org/docs/handbook/compiler-options.html#compiler-options).
+
+#### 4. Превращение файлов JavaScript в файлы TypeScript
+Далее вам необходимо изменить расширение всех файлов проекта с .js(x) на .ts(x). Это позволит компилятору TypeScript начать индексировать эти файлы и использовать все возможности TypeScript.
+
+###### Отключение проверок:
+Чтобы отключить проверку типов для каждой строки, нужно добавить следующий комментарий над этой строкой:
+```// @ts-ignore```
+
+Чтобы отключить проверку типа для всего, вы можете использовать:
+```// @ts-nocheck```
+
+##### Полезные ссылки по TypeScript:
+- [Добавление TypeScript](https://create-react-app.dev/docs/adding-typescript/)
+- [Документация TypeScript](https://www.typescriptlang.org/docs/)
+- [Песочница TypeScript](https://www.typescriptlang.org/play?#code/)
+
+***Шпаргалки по TypeScript***
+- [Все шпаргалки по React + TypeScript](https://github.com/typescript-cheatsheets/react)
+- [TypeScript 4.0 Cheat Sheet](https://www.sitepen.com/blog/typescript-cheat-sheet)
+- [A collection of cheatsheets](https://devhints.io/typescript)
+
+***Примеры приложений***
+- [Create React App TypeScript Todo Example 2020](https://github.com/laststance/create-react-app-typescript-todo-example-2020)
+- [Ben Awad's 14 hour Fullstack React/GraphQL/TypeScript Tutorial](https://www.youtube.com/watch?v=I6ypD7qv3Z8)
+- [Cypress Realworld App](https://github.com/cypress-io/cypress-realworld-app)
 
 # Полезности
 
