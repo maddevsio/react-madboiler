@@ -1,6 +1,5 @@
 # You need to uncomment this file if you need to use gitlab-ci
-
-# image: node:14.15.4
+image: node:14.15.4
 
 # cache:
 #   paths:
