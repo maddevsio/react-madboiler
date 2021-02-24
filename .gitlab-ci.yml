@@ -1,3 +1,5 @@
+# You need to uncomment this file if you need to use gitlab-ci
+
 image: node:14.15.4
 
 cache:
@@ -5,13 +7,13 @@ cache:
     - node_modules/
 
 stages:
-  - build
+  - install
   - lint
   - test
   - pages
 
 install_dependencies:
-  stage: build
+  stage: install
   script:
     - yarn
   artifacts:
@@ -33,9 +35,12 @@ pages:
   stage: pages
   artifacts:
     paths:
-      - public/
+      - public
   script:
     - yarn build
+    - rm -rf public
+    - cp build/index.html build/404.html
+    - mv build public
   only:
     - master
   retry: 2

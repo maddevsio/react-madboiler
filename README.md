@@ -33,7 +33,8 @@
 14. [Запуск на проде](#запуск-на-проде)
 15. [Cypress](#cypress)
 16. [TypeScript](#typescript)
-17. [Полезности](#полезности)
+17. [Gitlab CI](#gitlabci)
+18. [Полезности](#полезности)
 
 
 # Первый запуск
@@ -911,6 +912,19 @@ Enabling --strict enables --noImplicitAny, --noImplicitThis, --alwaysStrict, --s
 - [Create React App TypeScript Todo Example 2020](https://github.com/laststance/create-react-app-typescript-todo-example-2020)
 - [Ben Awad's 14 hour Fullstack React/GraphQL/TypeScript Tutorial](https://www.youtube.com/watch?v=I6ypD7qv3Z8)
 - [Cypress Realworld App](https://github.com/cypress-io/cypress-realworld-app)
+
+# Gitlab CI
+
+#### Подключение
+По дефолту файл gitlab-ci.yml(конфигурация CI) закомментирован, чтобы не тратить лишние минуты раннера
+Для того чтобы gitlab-ci пайплайны начали работать, нужно просто раскомментировать содержимое файла `.gitlab-ci.yml`
+
+#### Описание стейджей
+* install - установка зависимостей при помощи `yarn`
+* lint - запуск линтеров командой `yarn lint:all`
+* test - запуск юнит-тестов командой `yarn test:ci`, генерация и **отображение** coverage
+* pages - запуск билда командой `yarn build`
+* pages:deploy - деплой на gitlab-pages
 
 # Полезности
 
