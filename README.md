@@ -4,8 +4,6 @@
 
 # Стек технологий
 * [React](https://ru.reactjs.org/)
-* [Redux](https://redux.js.org/)
-* [Redux-thunk](https://github.com/reduxjs/redux-thunk)
 * [React-router-dom](https://reactrouter.com/web/guides/quick-start)
 * [Styled-components](https://styled-components.com/)
 * [React-use](https://github.com/streamich/react-use)
@@ -21,20 +19,19 @@
 2. [Структура](#структура)
 3. [Роутинг](#роутинг)
 4. [Компоненты](#компоненты)
-5. [Redux](#redux)
-6. [LocalStorage](#local-storage)
-7. [Hooks](#hooks)
-8. [Utils](#utils)
-9. [Axios](#axios)
-10. [Стили](#стили)
-11. [Тестирование](#тестирование)
-12. [Форматирование](#форматирование)
-13. [JSDoc](#jsdoc)
-14. [Запуск на проде](#запуск-на-проде)
-15. [Cypress](#cypress)
-16. [TypeScript](#typescript)
-17. [Gitlab CI](#gitlabci)
-18. [Полезности](#полезности)
+5. [LocalStorage](#local-storage)
+6. [Hooks](#hooks)
+7. [Utils](#utils)
+8. [Axios](#axios)
+9. [Стили](#стили)
+10. [Тестирование](#тестирование)
+11. [Форматирование](#форматирование)
+12. [JSDoc](#jsdoc)
+13. [Запуск на проде](#запуск-на-проде)
+14. [Cypress](#cypress)
+15. [TypeScript](#typescript)
+16. [Gitlab CI](#gitlabci)
+17. [Полезности](#полезности)
 
 
 # Первый запуск
@@ -148,16 +145,6 @@ yarn start
 
 **src/test.utils.js** - Утилиты для тестирования(testing-library)
 
-**src/store** - Папка redux-стора
-
-**src/store/configure.js** - Файл конфигурации redux-стора
-**src/store/index.js** - Файл создания редьюсера(combine)
-**src/store/store.utils.js** - Утилиты для создания сущностей redux
-**src/store/[store-name]** - папка с редьюсером
-**src/store/[store-name]/reducer.js** - редьюсер
-**src/store/[store-name]/actions.js** - экшены
-**src/store/[store-name]/selectors.js** - селекторы
-
 **src/utils** - папка с утилитами
 
 # Роутинг
@@ -256,29 +243,35 @@ touch src/components/[ComponentName]/[ComponentName].styles.js
 
 **index.jsx** - основной файл компонента, в котором содержится логика. Пример:
 ```javascript
-import React from 'react'
-import { useMount } from 'react-use'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useMount, useUpdateEffect } from 'react-use'
 
 // component
 import TodoList from './TodoList'
 
-// store
-import { getTodos } from '../../store/todo/selectors'
-import { getInitialTodos as getTodosList } from '../../store/todo/actions'
-
 // Создание компонента
 function Wrapper() {
-  // Получение данных из стора
-  const todos = useSelector(getTodos)
-  const dispatch = useDispatch()
-  const getInitialTodos = () => dispatch(getTodosList())
+  const [todos, setTodos] = useState([])
 
-  // Использование mount-хука для вызова getInitialTodos() экшена
+  const getInitialTodos = () => {
+    // ...логика получения initialTodos из localStorage
+  }
+
+  const saveTodos = () => {
+    // ...логика сохранения todos в localStorage
+  }
+
+  const addTodo = todo => setTodos([...todos, todo])
+  const removeTodo = todo => setTodos([...todos.filter(todo => todo === todo)]);
+
+  // Использование mount-хука для вызова getInitialTodos()
   useMount(() => getInitialTodos())
 
+  // Следим за todos и сохраняем их в localStorage после обновления
+  useUpdateEffect(() => saveTodos(), [todos])
+
   // возвращаем dumb-компонент для отображения с необходимыми props'ами
-  return <TodoList todos={todos} />
+  return <TodoList todos={todos} addTodo={addTodo} removeTodo={removeTodo} />
 }
 
 export default Wrapper
@@ -316,225 +309,6 @@ export default TodoList
 ### Полезные ссылки
 * [PropTypes](https://ru.reactjs.org/docs/typechecking-with-proptypes.html)
 * [Хуки](https://ru.reactjs.org/docs/hooks-intro.html)
-
-# Redux
-
-Для хранения данных в React-приложениях принято использовать redux - библиотеку, позволяющую использовать контейнер предсказуемого состояния.
-[Подробнее в документации](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
-### Пример работы стора
-Разберем пример работы с redux на основе существующего todo-стора.
-Все необходимые файлы находятся в папке `src/store/[store-name]/*`.
-
-#### actions.js
-В этом файле хранятся actionTypes и actionCreators, необходимые для изменения состояния. Например, в сторе todo есть 3 action'а, которые меняют состояние списка тудушек:
-```javascript
-getInitialTodos() - для получения списка тудушек из localStorage
-addTodo(todo) - для добавления новой тудушки
-removeTodo(todo) - для удаления  существующей тудушки
-```
-
-### reducer.js
-В этом файле находится сам редьюсер, который отвечает за изменение стора после диспатча одного из экшенов:
-```javascript
-import { createReducer } from "../store.utils"
-import { ADD_TODO, GET_INITIAL_TODOS, REMOVE_TODO } from "./actions"
-
-// Начальное значение
-const initialState = {
-  todos: [],
-}
-
-// Вспомогательная функция для фильтрации тудушек после удаления
-const onDeleteTodo = (todos, { id }) => todos.filter(todo => todo.id !== id)
-
-// Редьюсер, созданный при помощи вспомогательной функции createReducer()
-export const todosReducer = createReducer(initialState, {
-  [GET_INITIAL_TODOS.DEFAULT](state, action) {
-    return { ...state, todos: [...action.payload] }
-  },
-  [ADD_TODO.DEFAULT](state, action) {
-    return { ...state, todos: [...state.todos, action.payload ] }
-  },
-  [REMOVE_TODO.DEFAULT](state, action) {
-    return { ...state, todos: onDeleteTodo(state.todos, action.payload) }
-  },
-})
-```
-
-### selectors.js
-Файл со вспомогательными функциями(селекторами) для получения данных из стора:
-```javascript
-import { createSelector } from '../store.utils'
-
-// Создаем селектор для получения списка тудушек
-export const getTodos = createSelector(
-  state => state.todos,
-  todos => todos.todos || [],
-)
-```
-
-### Создание стора
-1. Создаем папку с названием нового стора
-```bash
-mkdir src/store/notifications
-```
-2. Создаем необходимые файлы
-```bash
-touch src/store/notifications/reducer.js
-touch src/store/notifications/actions.js
-touch src/store/notifications/selectors.js
-```
-
-3. Создаем редьюсер в файле `reducer.js`
-```javascript
-import { createReducer } from "../store.utils"
-
-// Начальное значение
-const initialState = {
-  notifications: [],
-}
-// Редьюсер, созданный при помощи вспомогательной функции createReducer()
-export const notificationsReducer = createReducer(initialState, {})
-```
-
-4. Создаем нужные нам actionTypes и actionCreators в файле `actions.js`
-```javascrirpt
-import { createActionTypes, createAction } from '../store.utils'
-
-export const FETCH_NOTIFICATIONS = createActionTypes('FETCH_NOTIFICATIONS')
-export const MARK_NOTIFICATION_READ = createActionTypes('MARK_NOTIFICATION_READ')
-
-export const fetchNotificaions = createAction(FETCH_NOTIFICATIONS.DEFAULT)
-export const markNotificationRead = createAction(MARK_NOTIFICATION_READ.DEFAULT)
-```
-
-5. Добавляем actionTypes в `reducer.js`
-```javascript
-import { createReducer } from "../store.utils"
-import { FETCH_NOTIFCATIONS, MARK_NOTIFICATION_READ } from './actions'
-
-// Начальное значение
-const initialState = {
-  notifications: [],
-}
-
-const markRead = (notifications, id) => notifications.map(notification => notification.id === id ? ({ ...notification, read: true }) : notification)
-
-// Редьюсер, созданный при помощи вспомогательной функции createReducer()
-export const notificationsReducer = createReducer(initialState, {
-    [FETCH_NOTIFICATIONS.DEFAULT](state, action) {
-        return { ...state, notifications: action.payload }
-    },
-    [MARK_NOTIFICATION_READ.DEFAULT](state, action) {
-        return { ...state, notifications: markRead(state.notifications, action.payload) }
-    }
-})
-```
-
-6. Создаем селекторы для получения списка нотификации и нотификации по id в файле `selectors.js`
-```javascript
-import { createSelector } from '../store.utils'
-
-export const getNotificationsList = createSelector(
-    store => store.notifications, // получаем нужный store
-    notifications => notifications.notifications, // получаем список нотификаций
-)
-
-export const getNotificationById = id => createSelector(
-    store => store.notifications, // получаем нужный store
-    notifications => notifications.find(notification => notification.id === id)
-)
-```
-
-### Работа со стором в компонентах
-Для работы со стором в компонентах принято использовать вспомогательные хуки:
-* `useSelector`
-* `useDispatch`
-
-Пример:
-```javascript
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-
-// store
-import { getNotificationsList, getNotificationById } from '../../store/notifications/selectors'
-import { fetchNotificaions } from '../../store/notifications/actions'
-
-function Wrapper() {
-  // Используем селектор для получения списка
-  const notifications = useSelector(getNotificationsList)
-  
-  // Используем селектор для получения по id
-  const notificationById = useSelector(getNotificationById(1))  
-  
-  // Создаем экшен
-  const dispatch = useDispatch()
-  const fetchNotificaionsList = () => dispatch(fetchNotificaions())
-
-  return (
-    <TodoList 
-      notifications={notifications} 
-      fetchNotifications={fetchNotificaionsList} 
-    />
-  )
-}
-
-export default Wrapper
-```
-
-Также есть кастомный хук для более удобной работы с dispatch - `src/hooks/useActions.js`:
-Он позволяет избежать постоянного использования useDispatch()
-```javascript
-import useActions from '../hooks/useActions'
-...
-const actions = useActions({
-    fetchNotificaions,
-})
-...
-actions.fetchNotifications()
-...
-```
-
-### Асинхронные actions
-Для того чтобы делать запросы в API существуют асинхронные actions, работающие при помощи дополнительных библиотек. Есть несколько вариантов на выбор:
-* Redux-thunk - самый простой вариант, минимум настроек и сложности. **Используется в бойлере**
-* Redux-saga - библиотека, построенная на основе javascript-генераторов(experimental)
-* Redux-observable - на основе RXJS
-
-Если вам нужно строить большое приложение с большим кол-вом запросов в API и другими асинхронными действиями, то ваш выбор - `redux-saga`. Для простого приложения подойдет `redux-thunk`. `redux-observable` - только если вы знакомы с паттерном реактивного программирования
-
-#### Пример асинхронного экшена
-Для создания асинхронного thunk-экшена можно воспользоваться вспомогательной утилитой `createAsyncAction`:
-```javascript
-import { createActionTypes, createAction, createAsyncAction } from '../store.utils'
-
-// FETCH_TODOS содержит в себе 3 action-type - DEFAULT, SUCCESS и FAILURE
-export const FETCH_TODOS = createActionTypes('FETCH_TODOS')
-
-// Передаем обеькт action-types как 1 аргумент
-// Асинхронная функция как 2 аргумент
-// При вызове функции первым делом будет вызван action FETCH_TODOS.DEFAULT
-export const fetchTodos = createAsyncAction(FETCH_TODOS, async ({ success, failure, dispatch, getState }) => {
-    // тут асинхронный код
-    try {
-        const raw = await fetch('https://google.com')
-        const data = await raw.json()
-        // после завершения асинхронного кода вызываем success(payload)
-        // тут будет вызван action FETCH_TODOS.SUCCESS
-        success(data)
-    } catch(err) {
-        // тут будет вызван action FETCH_TODOS.FAILURE
-        failure(err)
-    }
-})
-```
-Последовательность действий после вызова `dispatch(fetchTodos(payload))`:
-```
-1. Вызов экшена FETCH_TODOS.DEFAULT
-2. Вызов асинхронной функции
-3. В случае успеха(блок try) - вызов экшена FETCH_TODOS.SUCCESS
-4. В случае ошибки(блок catch) - вызов экшена FETCH_TODOS.FAILURE
-```
 
 # LocalStorage
 Для работы с localStorage можно использовать вспомогательные утилиты: `loadState` и `saveState`
