@@ -1,34 +1,34 @@
 # You need to uncomment this file if you need to use gitlab-ci
 image: node:14.15.4
 
-# cache:
-#   paths:
-#     - node_modules/
+cache:
+  paths:
+    - node_modules/
 
-# stages:
-#   - install
-#   - lint
-#   - test
-#   - pages
+stages:
+  - install
+  - lint
+  - test
+  - pages
 
-# install_dependencies:
-#   stage: install
-#   script:
-#     - yarn
-#   artifacts:
-#     paths:
-#       - node_modules/
+install_dependencies:
+  stage: install
+  script:
+    - yarn
+  artifacts:
+    paths:
+      - node_modules/
 
-# lint:
-#   stage: lint
-#   script:
-#     - yarn lint:all
+lint:
+  stage: lint
+  script:
+    - yarn lint:all
 
-# test:
-#   stage: test
-#   script:
-#     - yarn test:ci
-#   coverage: /All\sfiles.*?\s+(\d+.\d+)/
+test:
+  stage: test
+  script:
+    - yarn test:ci
+  coverage: /All\sfiles.*?\s+(\d+.\d+)/
 
 # pages:
 #   stage: pages
