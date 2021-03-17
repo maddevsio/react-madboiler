@@ -1,9 +1,7 @@
 import React from 'react'
-import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
-import { store } from './store/configure'
 import { theme } from './config/theme'
 import Router from './Router'
 import { GlobalStyles } from './styles/GlobalStyles'
@@ -15,11 +13,9 @@ function App() {
       <GlobalStyles />
       <StyledApp>
         <ReactLogo />
-        <Provider store={store}>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        </Provider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
       </StyledApp>
     </ThemeProvider>
   )

@@ -7,15 +7,16 @@ import { Wrapper } from './TodoList.styles'
 
 const propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object),
+  removeTodo: PropTypes.func,
 }
 
-function TodoList({ todos }) {
+function TodoList({ todos, removeTodo }) {
   if (!todos.length) return <div className="empty">No todos :)</div>
 
   return (
     <Wrapper>
       {todos.map(todo => (
-        <TodoItem key={todo.id} todo={todo} />
+        <TodoItem key={todo.id} todo={todo} removeTodo={removeTodo} />
       ))}
     </Wrapper>
   )

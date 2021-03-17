@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import uniqid from 'uniqid'
 import PropTypes from 'prop-types'
 
 import { Wrapper, Input, Button } from './TodoInput.styles'
@@ -12,7 +13,7 @@ function TodoInput({ addTodo }) {
 
   const handleAddTodo = () => {
     if (!value) return
-    addTodo(value)
+    addTodo({ text: value, id: uniqid() })
     setValue('')
   }
 
