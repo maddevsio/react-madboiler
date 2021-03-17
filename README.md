@@ -137,7 +137,7 @@ yarn start
 
 **src/hocs** - Higher Order Components (HOCs)
 
-**src/hoocs** - React-hooks
+**src/hooks** - React-hooks
 
 **src/index.js** - Корневой файл приложения(точка входа)
 
@@ -480,6 +480,10 @@ Tests coverage собирается после запуска команды `ya
 Линтер проверяет код на наличии опечаток и так далее.
 
 Для запуска линтера используется команда `yarn lint:css`
+
+### Подробности стайлгайда от Airbnb
+- [Javascript](https://github.com/airbnb/javascript)
+- [React](https://github.com/airbnb/javascript/tree/master/react)
 
 **Note: Также для запуска обоих линтеров сразу(JS+CSS) можно использовать команду `yarn lint:all`**
 
