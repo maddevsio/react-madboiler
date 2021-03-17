@@ -1,14 +1,13 @@
+import React from 'react'
 import { fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import React from 'react'
-import * as Redux from 'react-redux'
+import uniqid from 'uniqid'
 import { render } from '../../test.utils'
 
 import TodoInput from './TodoInput'
 import TodoWrapper from '.'
 
-const dispatch = jest.fn(() => null)
-Redux.useDispatch = () => dispatch
+jest.mock('uniqid', () => () => 1)
 
 describe('TodoInput component', () => {
   const props = {
@@ -44,29 +43,26 @@ describe('TodoInput component', () => {
 
     fireEvent.click(btn)
 
-    expect(props.addTodo).toBeCalledWith('new element')
+    expect(props.addTodo).toBeCalledWith({ id: uniqid(), text: 'new element' })
   })
 })
 
 describe('TodoWrapper component', () => {
+  const props = {
+    addTodo: jest.fn(),
+  }
+
   it('should render correctly', () => {
-    const { container } = render(<TodoWrapper />)
+    const { container } = render(<TodoWrapper {...props} />)
     expect(container).toMatchSnapshot()
   })
 
   it('should handle click on add btn', () => {
-    const { getByPlaceholderText, getByText } = render(<TodoWrapper />)
-
+    const { getByPlaceholderText, getByText } = render(<TodoWrapper {...props} />)
     const btn = getByText('Add')
     fireEvent.click(btn)
-
-    expect(dispatch).not.toBeCalled()
-
     const input = getByPlaceholderText('Enter new todo')
     userEvent.type(input, 'new element')
-
     fireEvent.click(btn)
-
-    expect(dispatch).toBeCalledTimes(1)
   })
 })

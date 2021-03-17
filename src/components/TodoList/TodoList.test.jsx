@@ -11,6 +11,7 @@ describe('TodoList component', () => {
         text: 'Test todo',
       },
     ],
+    removeTodo: jest.fn(),
   }
 
   it('should render correctly', () => {

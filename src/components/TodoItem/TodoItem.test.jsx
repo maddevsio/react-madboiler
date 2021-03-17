@@ -1,12 +1,8 @@
 import React from 'react'
-import * as Redux from 'react-redux'
 import { render, fireEvent } from '../../test.utils'
 
 import TodoItem from './TodoItem'
 import TodoWrapper from '.'
-
-const dispatch = jest.fn(() => null)
-Redux.useDispatch = () => dispatch
 
 describe('TodoItem component', () => {
   const props = {
@@ -38,6 +34,7 @@ describe('TodoWrapper component', () => {
     todo: {
       text: 'TODO',
     },
+    removeTodo: jest.fn(),
   }
 
   it('should render correctly', () => {
@@ -50,7 +47,5 @@ describe('TodoWrapper component', () => {
 
     const btn = getByText('X')
     fireEvent.click(btn)
-
-    expect(dispatch).toBeCalledTimes(1)
   })
 })
