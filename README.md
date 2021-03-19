@@ -20,22 +20,22 @@ A React quick-start project boilerplate with everything you need inside.
 
 ## Content
 1. [First start](#first-start)
-2. [Структура](#структура)
-3. [Роутинг](#роутинг)
-4. [Компоненты](#компоненты)
+2. [Project structure](#structure)
+3. [Routing](#routing)
+4. [Components](#components)
 5. [LocalStorage](#local-storage)
 6. [Hooks](#hooks)
 7. [Utils](#utils)
 8. [Axios](#axios)
-9. [Стили](#стили)
-10. [Тестирование](#тестирование)
-11. [Форматирование](#форматирование)
+9. [Styles](#styles)
+10. [Testing](#testing)
+11. [Formatting](#formatting)
 12. [JSDoc](#jsdoc)
-13. [Запуск на проде](#запуск-на-проде)
+13. [Running on production](#running-on-production)
 14. [Cypress](#cypress)
 15. [TypeScript](#typescript)
 16. [Gitlab CI](#gitlabci)
-17. [Полезности](#полезности)
+17. [Tricks](#tricks)
 
 
 # First start
