@@ -52,7 +52,7 @@ After, you just need to run the following command:
 When `Docker` complete to install and build your application - you will see `Compiled successfully` in your console. Your project is available on `3000` port, you can open it and start developing. - [http://localhost:3000](http://localhost:3000)
 
 ### Using npm dependencies
-If you don't have an opportunity and wish to use `docker` you can use default method for starting your project using [Node.JS и npm(yarn)](https://nodejs.org/en/)
+If you don't have an opportunity and wish to use `docker` you can use default method for starting your project using [Node.JS and npm(yarn)](https://nodejs.org/en/)
 
 1. Install dependencies
 ```bash
@@ -379,7 +379,7 @@ export default useFetchImages
 Utilities are stored in the `src/utils` folder in the separated files.
 
 #### Available utilities
-* `camelToSnakeCase` и `snakeToCamelCase` - transformation string into various styles of writing phrases without spaces or punctuation
+* `camelToSnakeCase` and `snakeToCamelCase` - transformation string into various styles of writing phrases without spaces or punctuation
 * `normalizeObjectKeys` - transformation all the object field keys using `snakeToCamelCase`
 * `normalizeCollectionKeys` - transformation all the elements(Element should be an object) of the array using `normalizeObjectKeys`
 * `getRequestParams` - function for getting values of get-parameters from location.search.
@@ -390,7 +390,7 @@ Utilities are stored in the `src/utils` folder in the separated files.
 # Axios
 For working with rest API most useful library is [`axios`](https://github.com/axios/axios) with `async/await` syntax.
 
-#### Настройка `axios`
+#### `axios` configuration
 `axios` configuration is in the `src/config/api.js` file. 
 
 #### Additional function `setApiHeader`
@@ -593,7 +593,7 @@ electrons-5:
 
 Full documetation of using Cypress with CI you can find [here](https://docs.cypress.io/guides/guides/continuous-integration.html#Examples).
 
-##### 2. Запуск Cypress в CI
+##### 2. Running Cypress in CI
 For run cypress in your CI, you just need to do the following steps:
 
 2.1. Install
