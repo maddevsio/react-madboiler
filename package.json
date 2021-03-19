@@ -30,8 +30,7 @@
     "test": "react-scripts test --watchAll",
     "test:coverage": "yarn test --coverage",
     "test:ci": "CI=true yarn test:coverage --watchAll=false",
-    "create:component": "node cli/create-component",
-    "create:store": "node cli/create-store"
+    "create:component": "node cli/create-component"
   },
   "eslintConfig": {
     "extends": [
