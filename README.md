@@ -18,7 +18,7 @@ A React quick-start project boilerplate with everything you need inside.
 * [ESlint](https://eslint.org/)
 * [Prettier](https://prettier.io/)
 
-## Content
+## Table of contents
 1. [First start](#first-start)
 2. [Project structure](#structure)
 3. [Routing](#routing)
