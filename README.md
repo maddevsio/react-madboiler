@@ -1,8 +1,12 @@
 # React MAD Boiler
 
-Бойлер для быстрого старта проекта на React со всем необходимым внутри.
+A React quick-start project boilerplate with everything you need inside.
 
-# Стек технологий
+# Translations
+- English
+- [Russian](./docs/ru.md)
+
+# Technology stack
 * [React](https://ru.reactjs.org/)
 * [React-router-dom](https://reactrouter.com/web/guides/quick-start)
 * [Styled-components](https://styled-components.com/)
@@ -14,8 +18,8 @@
 * [ESlint](https://eslint.org/)
 * [Prettier](https://prettier.io/)
 
-## Содержание
-1. [Первый запуск](#первый-запуск)
+## Content
+1. [First start](#first-start)
 2. [Структура](#структура)
 3. [Роутинг](#роутинг)
 4. [Компоненты](#компоненты)
@@ -34,28 +38,33 @@
 17. [Полезности](#полезности)
 
 
-# Первый запуск
-### При помощи docker и docker-compose
-Этот вариант хорош тем, что вам не нужно устанавливать на вашу рабочую машину кучу всяких зависимостей. Докер инкапсулирует весь этот мусор и не позволит загадить вашу систему.
-Для запуска проекта вам понадобятся установленные [Docker](https://docs.docker.com/get-docker/) и [Docker compose](https://docs.docker.com/compose/install/)
-```bash
-yarn docker:dev
-```
-После того как Docker установит все необходимые зависимости и соберет приложение - в консоле появится надпись `Compiled successfully`. Это означает, что проект доступен на `3000` порту - [http://localhost:3000](http://localhost:3000)
+# First start
+### Using docker and docker-compose
+This option is good in that you don't need to install a lot of dependencies on your working device. Docker just encapsulates all that trash.
 
-### С использованием локальных зависимостей
-Если не хочется возиться с докером и есть установленные [Node.JS и npm(yarn)](https://nodejs.org/en/), то можно воспользоваться запуском проекта локально:
-1. Устанавливаем зависмости
-```bash
-yarn
-```
-2. Запускаем проект
-```bash
-yarn start
-```
-Приложение доступно по адресу [http://localhost:3000](http://localhost:3000)
+To start the project with this option you need to install [Docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/)
 
-# Структура
+After, you just need to run the following command:
+```bash
+  yarn docker:dev
+```
+
+When `Docker` complete to install and build your application - you will see `Compiled successfully` in your console. Your project is available on `3000` port, you can open it and start developing. - [http://localhost:3000](http://localhost:3000)
+
+### Using npm dependencies
+If you don't have an opportunity and wish to use `docker` you can use default method for starting your project using [Node.JS и npm(yarn)](https://nodejs.org/en/)
+
+1. Install dependencies
+```bash
+  yarn # or npm i
+```
+2. Start the project
+```bash
+  yarn start # or npm start
+```
+The application is available on the address [http://localhost:3000](http://localhost:3000)
+
+# Structure
 ```
 .
 ├── README.md
@@ -103,54 +112,54 @@ yarn start
 │   ├── utils
 ```
 
-**README.md** - Описание проекта
-**package.json** - Файл зависимостей
-**yarn.lock** - node_modules lock файл
-**docker-compose.dev.yml** - docker-compose файл для разработки
-**docker-compose.prod.yml** - docker-compose файл для сборки production-версии
-**.env.example** - env-example файл
-**.eslintrc** - файл конфигурации ESLint
-**.gitlab-ci.yml** - Файл конфигурации Gitlab CI
-**.stylelintrc** - файл конфигурации Stylelint
+**README.md** - Project description
+**package.json** - Npm configuration file
+**yarn.lock** - Dependencies lockfile
+**docker-compose.dev.yml** - docker-compose config for development
+**docker-compose.prod.yml** - docker-compose config for build production
+**.env.example** - environment examples file
+**.eslintrc** - ESLint config
+**.gitlab-ci.yml** - Gitlab CI config
+**.stylelintrc** - Stylelint config
 
-**public** - Папка, созданная CRA, используется для запуска приложение(статика)
-**cli** - Папка со вспомогательными скриптами
-**docs** - Дополнительная документация
-**docker** - Папка с докерфайлами
-**docker/Dockerfile.dev** - докерфайл для разработки
-**docker/Dockerfile.prod** - докерфайл для production
+**public** - Folder with static files
+**cli** - Helpful scripts(CLI)
+**docs** - Additional documentation
+**docker** - Dockerfiles' folder
+**docker/Dockerfile.dev** - config for dev mode
+**docker/Dockerfile.prod** - config for prod mode
 
-**src** - Основная папка для разработки
+**src** - Main development folder
 
-**src/assets** - Статичные ассеты(изображения, шрифты и т.д.)
+**src/assets** - Static assets(images, fonts, etc.)
 
-**src/components** - Папка с компонентами
-**src/components/[ComponentName]** - Папка компонента
-**src/components/[ComponentName]/index.jsx** - Основной файл компонента(логика)
-**src/components/[ComponentName]/[ComponentName].jsx** - Представление компонента(верстка)
-**src/components/[ComponentName]/[ComponentName].test.jsx** - Юнит-тесты компонента
-**src/components/[ComponentName]/[ComponentName].styles.js** - Стили компонента
+**src/components** - Components folder
+**src/components/[ComponentName]** - A single component folder
+**src/components/[ComponentName]/index.jsx** - Core file(logic, default export)
+**src/components/[ComponentName]/[ComponentName].jsx** - View(markup)
+**src/components/[ComponentName]/[ComponentName].test.jsx** - Unit-tests
+**src/components/[ComponentName]/[ComponentName].styles.js** - Styles
 
-**src/config** - Файлы конфигурации
+**src/config** - Configuration files(axios, theme, etc.)
 
-**src/pages** - Папка со страницами проекта(роутинг)
+**src/pages** - Pages folder(routes)
 
 **src/hocs** - Higher Order Components (HOCs)
 
 **src/hooks** - React-hooks
 
-**src/index.js** - Корневой файл приложения(точка входа)
+**src/index.js** - Core application file(entry point)
 
-**src/Router.jsx** - Основной роутер
+**src/Router.jsx** - Main router
 
-**src/test.utils.js** - Утилиты для тестирования(testing-library)
+**src/test.utils.js** - Testing utils(testing-library)
 
-**src/utils** - папка с утилитами
+**src/utils** - Utils folder(additional small reusable functions)
 
-# Роутинг
-Роутинг работает при помощи вспомогательной библиотеки - [`react-router-dom`](https://reactrouter.com/web/guides/quick-start)
+# Routing
+We use [`react-router-dom`](https://reactrouter.com/web/guides/quick-start) for routing in application.
 
-Все роуты находятся в файле `src/Router.jsx`
+All the routes are storeded in the `src/Router.jsx` file.
 
 ```javascript
 import React from 'react'
@@ -170,20 +179,23 @@ function Router() {
 
 export default Router
 ```
-### Добавление нового роута
-1. Создать новый файл страницы в папке `src/pages`:
+
+### Adding a new route
+1. Create the new file in `src/pages` folder:
+
 ```javascript
 // NewPage.jsx
 import React from 'react'
 
 export default function NewPage() {
-    return (
-        <div>New page</div>
-    )
+  return (
+    <div>New page</div>
+  )
 }
 ```
 
-2. Добавить новую страницу в `src/pages/index.js` для корректного импорта:
+2. Add the new page in `src/pages/index.js` file for better import:
+
 ```javascript
 import Main from './Main'
 import Todo from './Todo'
@@ -196,7 +208,8 @@ export {
 }
 ```
 
-3. Добавить новую страницу в `src/Router.jsx`
+3. Add the new page in `src/Router.jsx` file
+
 ```javascript
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
@@ -217,67 +230,60 @@ function Router() {
 export default Router
 ```
 
-### Дополнительная информация
-* [Документация](https://reactrouter.com/web/guides/quick-start)
-* Не захламляйте страницы версткой и логикой. Страницы(компоненты в папке pages) нужны чтобы не было хаоса при создании новых роутов. Используйте компоненты для верстки и логики. На страницах рекомендуется использовать [`react-helmet`](https://www.npmjs.com/package/react-helmet)
+### Additional information
+* [Documentation](https://reactrouter.com/web/guides/quick-start)
+* **Important** The pages are used only for logiacal separation of the parts of the application. Not to use the pages as the components. Allowed using [`react-helmet`](https://www.npmjs.com/package/react-helmet) for set up the page's meta-tags(title, description, etc.)
 
-# Компоненты
-При работе с компонентами рекомендуется использовать современный подход(функциональные компоненты + хуки состояния).
-**Не рекомендуется использовать классовые компоненты, поскольку они работают гораздо медленнее и вскоре перестанут поддерживаться**
+# Components
+Working with the components it's recommended to use a modern attitude with functional components and hooks.
+**It's not recommended to use class components because they work too slowly(performance) and will soon be out of support**
 
-### Создание компонента
-1. Cоздать папку с названием компонента в `src/components`:
+### Creating
+For creating the component you can use the following `CLI-script`:
 ```bash
-mkdir src/components/[ComponentName]
+  yarn create:component MyComponent
 ```
-2. Создать необходимые файлы
-```bash
-touch src/components/[ComponentName]/index.jsx
-touch src/components/[ComponentName]/[ComponentName].jsx
-touch src/components/[ComponentName]/[ComponentName].test.jsx
-touch src/components/[ComponentName]/[ComponentName].styles.js
-```
-**P.S. Позже будет добавлена npm-команда для создания компонента**
+After using this script, the folder with your component's name will be appeared in your `src/components` folder. In this case it will be `src/components/MyComponent` folder.
 
-### Описание файлов компонента
+### Component's files description
 
-**index.jsx** - основной файл компонента, в котором содержится логика. Пример:
+**index.jsx** - core file with logic. Example:
+
 ```javascript
 import React, { useState } from 'react'
 import { useMount, useUpdateEffect } from 'react-use'
 
-// component
+// view
 import TodoList from './TodoList'
 
-// Создание компонента
 function Wrapper() {
   const [todos, setTodos] = useState([])
 
   const getInitialTodos = () => {
-    // ...логика получения initialTodos из localStorage
+    // ...some logic to get initialTodos from localStorage
   }
 
   const saveTodos = () => {
-    // ...логика сохранения todos в localStorage
+    // ...some logic to save todos from localStorage
   }
 
   const addTodo = todo => setTodos([...todos, todo])
   const removeTodo = todo => setTodos([...todos.filter(todo => todo === todo)]);
 
-  // Использование mount-хука для вызова getInitialTodos()
+  // Use mount-hook for calling getInitialTodos() after mount
   useMount(() => getInitialTodos())
 
-  // Следим за todos и сохраняем их в localStorage после обновления
+  // Watch todos and save it in localStorage after updating
   useUpdateEffect(() => saveTodos(), [todos])
 
-  // возвращаем dumb-компонент для отображения с необходимыми props'ами
+  // return view with some props
   return <TodoList todos={todos} addTodo={addTodo} removeTodo={removeTodo} />
 }
 
 export default Wrapper
 ```
 
-**[ComponentName].jsx** - файл для представления компонента(верстка). Пример:
+**[ComponentName].jsx** - view file(markup). Example:
 ```javascript
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -303,27 +309,27 @@ TodoList.propTypes = propTypes
 export default TodoList
 ```
 
-**[ComponentName].test.jsx** - файл с юнит-тестами
-**[ComponentName].styles.js** - файл со стилями(styled-components)
+**[ComponentName].test.jsx** - unit-tests
+**[ComponentName].styles.js** - styles(styled-components by default)
 
-### Полезные ссылки
-* [PropTypes](https://ru.reactjs.org/docs/typechecking-with-proptypes.html)
-* [Хуки](https://ru.reactjs.org/docs/hooks-intro.html)
+### Useful links
+* [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
+* [Hooks](https://reactjs.org/docs/hooks-intro.html)
 
 # LocalStorage
-Для работы с localStorage можно использовать вспомогательные утилиты: `loadState` и `saveState`
-Пример:
+For working with localStorage you can use additional utilities: `loadState` and `saveState`
+Example:
 ```
 import { saveState, loadState }  from '../utils/localStorage'
 const save = data => saveState(data, 'key')
 const load = () => loadState('key')
 ```
-# Hooks
 
+# Hooks
 #### React-use
-Это набор вспомогательных react-хуков, которые покрывают большую часть потребностей и позволяют каждый раз не изобретать велосипеды.
-[Список всех хуков](https://github.com/streamich/react-use)
-Самые полезные хуки:
+This is a library of additional react-hooks, which cover most of the needs and do not have to create the wheel every time.
+[Hooks list](https://github.com/streamich/react-use)
+Most useful hooks:
 * [useDebounce](https://github.com/streamich/react-use/blob/master/docs/useDebounce.md)
 * [useLocalStorage](https://github.com/streamich/react-use/blob/master/docs/useLocalStorage.md)
 * [useMount](https://github.com/streamich/react-use/blob/master/docs/useMount.md)
@@ -332,10 +338,10 @@ const load = () => loadState('key')
 * [useBoolean](https://github.com/streamich/react-use/blob/master/docs/useToggle.md)
 * [useList](https://github.com/streamich/react-use/blob/master/docs/useList.md)
 
-#### Кастомные хуки
-Написание кастомных хуков - очень полезная штука, которая позволяет переиспользовать большое количество кода. Если видите код, который в будушем нужно будет переиспользовать - старайтесь выносить его в хук.
+#### Custom hooks
+Creating custom hooks - a very useful thing, which allows to reuse most of the part of code. If you see code, which will probably be reused in the future - separate it in the hook.
 
-Кастомные хуки позволяют писать переиспользуемый функционал в рамках React-компонентов. Пример небольшого кастомного хука, реализующего работу с API. При этом этот хук свободно можно использовать в нескольких компонентах сразу и он будет работать одинаково:
+This is an example of usage simple custom hook, implementing work with API:
 ```javascript
 import { useState } from 'react'
 import { useList, useToggle } from 'react-use'
@@ -370,166 +376,152 @@ export default useFetchImages
 ```
 
 # Utils
-Утилиты хранятся в папке `src/utils` в отдельных файлах(1 вайл - 1 утилита)
+Utilities are stored in the `src/utils` folder in the separated files.
 
-#### Список доступных утилит
-* `camelToSnakeCase` и `snakeToCamelCase` - трансформация строки в различные стили написания составных строк
-* `normalizeObjectKeys` - трансформация всех полей обьекта(ключей) с использованием `snakeToCamelCase`
-* `normalizeCollectionKeys` - трансформация всех элементов списка с использованием `normalizeObjectKeys`
-* `getRequestParams` - функция для получения значений get-параметров из адресной строки(window.location.search)
-* `localStorage` - работа с localStorage
+#### Available utilities
+* `camelToSnakeCase` и `snakeToCamelCase` - transformation string into various styles of writing phrases without spaces or punctuation
+* `normalizeObjectKeys` - transformation all the object field keys using `snakeToCamelCase`
+* `normalizeCollectionKeys` - transformation all the elements(Element should be an object) of the array using `normalizeObjectKeys`
+* `getRequestParams` - function for getting values of get-parameters from location.search.
+* `localStorage` - utilities for working with localStorage
 
-**PS: Список будет обновляться**
+**PS: The list will be updated**
 
 # Axios
-Для работы с запросами в API удобнее всего использовать библиотеку [`axios`](https://github.com/axios/axios) и синтаксис `async/await`.
+For working with rest API most useful library is [`axios`](https://github.com/axios/axios) with `async/await` syntax.
 
 #### Настройка `axios`
-Конфигурация `axios` находится в файле `src/config/api.js`. 
+`axios` configuration is in the `src/config/api.js` file. 
 
-#### Вспомогательная функция `setApiHeader`
-Если нужно добавить заголовок в существующий инстанс axios'а, можно воспользоваться вспомогательной функцией `setApiHeader` Пример:
+#### Additional function `setApiHeader`
+If you need to add a header in the existing axios instance, you can use `setApiHeader` function. Example:
 ```javascript
 import { setApiHeader, api } from '../config'
 
 async function authenticate() {
-  // Авторизуемся при помощи post-запроса
+  // Authorization
   const response = await api.post('/auth')
 
-  // Получаем токен
+  // Getting token from response
   const { token } = response
 
-  // Устанавливаем header для последующих авторизованных запросов
+  // Set header for the next authenticated requests
   setApiHeader('Authorization', `Bearer ${token}`)
 }
 
 authenticate()
 ```
 
-**Note: Старайтесь всегда использовать синтаксис [async/await](https://learn.javascript.ru/async-await)**
+**Note: Always try to use [async/await](https://learn.javascript.ru/async-await) syntax**
 
-# Переменные окружения
-Для работы с переменными окружения используется несколько файлов:
-* `.env.example` - для хранения примеров ключей и значений
-* `.env` - для самих переменных(не добавляется в git)
+# Environment variables
+For working with environment variables we need to use some config files:
+* `.env.example` - for storing examples of variables
+* `.env` - for variables
 
-Для того, чтобы добавить свою переменную окружения, вам нужно сделать следующее:
-1. Добавить переменную в `.env.example` с пустым значением
+To add a new environment variable, you need to do the following steps:
+1. Add variables into `.env.example` file with empty value
 ```
 REACT_APP_API_BASE_URL=
 ```
-2. Добавить переменную со значением в `.env`
+2. Add variable with value into `.env` file.
 ```
 REACT_APP_API_BASE_URL=https://google.com/api
 ```
-3. Перезапустить проект(обязательно)
-4. Добавить переменную в config(`src/config/index.js`)
+3. Restart the project(required)
+4. Add the variable into the config(`src/config/index.js`)
 ```javascript
 export const config = {
   API_URL: process.env.REACT_APP_API_BASE_URL,
 }
 ```
-5. Использовать переменную из конфига
+5. Use variable from config
 ```javascript
 axios.get(config.API_URL)
 ```
 
-**Note: Не забывайте перезапускать проект после добавления/обновления переменных**
-**Note 2: Переменные ВСЕГДА должны начинаться с `REACT_APP_`, иначе они не будут работать**
+**Note: Don't forget to restart the project after adding/updating any variables**
+**Note 2: Environment variables should be ALWAYS started by `REACT_APP_`, otherwise they won't work**
 
-# Стили
-Для написания стилей можно использовать несколько подходов:
-* Scss/BEM - стандарт написания стилей
-* Css-In-JS([styled-components](https://styled-components.com/docs/advanced#theming)) - рекомендованный вариант, гораздо проще и удобнее, нежели Scss/BEM
+# Styles
+For writing styles we can use some approach:
+* Scss/BEM - Default styling
+* Css-In-JS([styled-components](https://styled-components.com/docs/advanced#theming)) - recommended variant that is the most simple and comfortable, than the previous.
 
-**По дефолту настроено использование styled-components**
+# Testing
+For testing the components(units) is used `Jest` and `React-testing-library`.
 
-# Тестирование
-Для тестирования компонентов(юнит-тесты) используется связка `Jest`+`React-testing-library`. Также подключены некоторые вспомогательные библиотеки.
-
-#### Ссылки
+#### Useful links
 [Jest](https://jestjs.io/docs/en/getting-started)
 [Testing-library](https://testing-library.com/)
 [React-testing-library](https://testing-library.com/docs/react-testing-library/intro)
 
-#### Запуск тестов
-Существует несколько команд для запуска тестов:
-`yarn test` - простой запуск тестов в watch-режиме
-`yarn test:coverage` - запуск тестов в watch-режиме + coverage
-`yarn test:ci` - запуск тестов без watch-режима + coverage + disable coloring
-
+#### Unit-tests running
+There are some scripts for running tests:
+`yarn test` - watch-mode
+`yarn test:coverage` - watch-mode+coverage
+`yarn test:ci` - without watch-mode + coverage + disable coloring output
 
 #### Coverage
-Tests coverage собирается после запуска команды `yarn test:coverage`. В папке `./coverage` можно посмотреть развернутый coverage в 
-формате HTML(Istanbul)
+Coverage generates after running `yarn test:coverage` command.
+You can see expanded coverage in HTML format in the `./coverage` folder.
 
-**Note: Для unit-тестов также установлен минимальный порог по coverage. Если coverage становится ниже 80% - тесты начинают падать**
+**Note: For unit-tests is also set minimal coverage threshold. If coverage is less than 80% - the tests will fail**
 
-# Форматирование
-Линетры отвечают за чистоту и порядок кода. Они позволяют исключить попадание говнокода в репозиторий
-#### Javascript-линтер
-В качестве линтера JS-кода используется [eslint](https://eslint.org/)
-За основу взят наиболее популярный конфиг - [Airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
+# Formatting
+Linters are responsible for code cleaning. They allow to except pushing shitcode into repository.
+#### ESLint
+[Eslint](https://eslint.org/) is used for linting Javascript code.
+[Airbnb](https://www.npmjs.com/package/eslint-config-airbnb) config is used as default.
 
-Для запуска линтера используется несколько npm-команд:
-`yarn lint:js` - для запуска линтера
-`yarn lint:js:fix` - для запуска линтера с автоматическими фиксами(ESLint сам поправит все что сможет)
+For running linter you can use the following npm-scripts:
+`yarn lint:js` - for running linter
+`yarn lint:js:fix` - for running linter with autofix
 
-#### CSS-линтер(styled-components)
-В качестве css-линтера используется [stylelint](https://stylelint.io/)
-Линтер проверяет код на наличии опечаток и так далее.
+#### CSS(styled-components)
+For linting css code is used [stylelint](https://stylelint.io/)
+The linter check your code for typos or spelling mistakes.
 
-Для запуска линтера используется команда `yarn lint:css`
+For running the linter you can use `yarn lint:css` script
 
-### Подробности стайлгайда от Airbnb
+### Airbnb styleguide links
 - [Javascript](https://github.com/airbnb/javascript)
 - [React](https://github.com/airbnb/javascript/tree/master/react)
 
-**Note: Также для запуска обоих линтеров сразу(JS+CSS) можно использовать команду `yarn lint:all`**
+**Note: For running both linters you can use `yarn lint:all` script**
 
 # JSDoc
-Для поддержания читаемости кода на приемлимом уровне хорошем тоном считается использование JSDoc для описания сущностей вашего приложения.
-В проекте по дефолту не используется JSDoc, но вы можете легко его добавить, используя следующие полезные ссылки:
-
+The optimal solution to make your code more readable and clean is using JSDoc. The project doen't use JSDoc by default, but you can easily add it usuing the following helpful links:
 [Documentation](https://jsdoc.app/)
-
 [eslint-plugin](https://www.npmjs.com/package/eslint-plugin-jsdoc)
 
-# Запуск на проде
-Для запуска проекта на проде есть простая команда `yarn docker:prod`
-
-Эта команда запускает докер, который делает следующее:
-* Пуллит зависимости из package.json
-* Собирает проект(`yarn build`)
-* Запускает nginx, который будет отдавать статику на 80 порту
-
-После успешной сборки страница будет доступна на `http://localhost`
-
+# Running on production
+For running the project on production you can use `yarn docker:prod` script. This script is doing the following steps:
+* Downloading dependencies
+* Build the project(`yarn build`)
+* Run nginx for serve static
+  
 # Cypress
-Cypress - это фреймворк для сквозного тестирования на основе JavaScript.
+Cypress is framework for end-to-end testing based on Javascript.
 
-##### Почему Cypress?
-Вы можете иметь 100% покрытие кода с помощью модульных тестов, которые тестируют все ваши компоненты изолированно, но ваше приложение все равно может дать сбой, когда компоненты начнут взаимодействовать друг с другом. Чтобы предотвратить возможные сбои нужно использовать Cypress. Cypress может тестировать все, что работает в браузере. 
+##### Why Cypress?
+You can have 100% code coverage with unit-tests, which test all your components separately, but your application can still fail, when the components start to interact with each other. To prevent possible fails, you need to use e2e tests with Cypress. Cypress can test everything that works in a browser.
 
-### Начало работы с Cypress
+### Start working with Cypress
 
-##### 1. Проверьте [системные требования](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements)
+##### 1. Check [system preferences](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements)
 
-##### 2. Установите Cypress через yarn:
+##### 2. Install Cypress:
 ```yarn add cypress --dev``` 
-Эта команда установит Cypress локально как dev зависимость для проекта.
 
-##### 3. Запуск Cypress
-Для запуска Cypress Test Runner вам необходимо выполнить следующую команду:
+##### 3. Running Cypress
+For running `Cypress Test Runner` you need to execute the following command:
 ```yarn run cypress open```
 
-И через мгновение он будет запущен. 
+### How to setup and run Cypress tests in CI?
+##### 1. [Setup CI](https://docs.cypress.io/guides/guides/continuous-integration.html#Setting-up-CI)
 
-
-### Как настроить и запустить тесты Cypress в CI?
-##### 1. [Настройка CI](https://docs.cypress.io/guides/guides/continuous-integration.html#Setting-up-CI)
-
-Конфигурация для поставщика GitLab CI, которая поможет вам начать работу: 
+Configuration for GitLab CI: 
 `.gitlab-ci.yml:`
 ```
 # first, install Cypress, then run all tests (in parallel)
@@ -599,45 +591,42 @@ electrons-5:
   extends: .job_template
 ```
 
-Полную документацию о примерах CI можно найти  [здесь](https://docs.cypress.io/guides/guides/continuous-integration.html#Examples).
+Full documetation of using Cypress with CI you can find [here](https://docs.cypress.io/guides/guides/continuous-integration.html#Examples).
 
 ##### 2. Запуск Cypress в CI
-Запуск Cypress в режиме непрерывной интеграции почти такой же, как его локальный запуск в вашем терминале. Обычно вам нужно сделать только две вещи:
+For run cypress in your CI, you just need to do the following steps:
 
-2.1. Установка Cypress
+2.1. Install
 ```yarn add cypress --dev```
 
-2.2. Запуск Cypress
+2.2. Run
 `cypress run`
 
-##### 3. [Для записи тестов](https://docs.cypress.io/guides/guides/continuous-integration.html#To-record-tests)
-1. [Настройте свой проект на запись](https://docs.cypress.io/guides/dashboard/projects.html#Setup)
-2. Передайте флаг `--record` команде` cypress run` внутри CI.
+##### 3. [For record tests](https://docs.cypress.io/guides/guides/continuous-integration.html#To-record-tests)
+1. [Setup your project](https://docs.cypress.io/guides/dashboard/projects.html#Setup)
+2. Add `--record` flag when you are running `cypress run` in the CI.
 `cypress run --record --key = abc123`
 
-Прочтите [полное руководство](https://docs.cypress.io/guides/dashboard/introduction.html#Features) в Службе панели инструментов.
+[Full documentation](https://docs.cypress.io/guides/dashboard/introduction.html#Features)
 
-### Написание тестов с Cypress
-О том, как писать тесты и прочее, читайте в официальной [документации](https://docs.cypress.io/)
+### Writing Cypress tests
+[Docs](https://docs.cypress.io/)
 
-**Ссылки:**
+**Useful links:**
 - https://www.valentinog.com/blog/cypress/
 - https://blog.logrocket.com/how-to-write-useful-end-to-end-tests-with-cypress/
 - https://softchris.github.io/pages/cypress.html#great-e2e-testing-with-cypress
 
-**Плагины:**
-Чтобы предотвратить появление ошибок линтинга, используйте [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress) плагин.
+# How to add TypeScript?
 
-# Как перейти на TypeScript?
-
-#### 1. Добавление TypeScript в проект
+#### 1. Add TypeScript dependencies in the project
 ```yarn add typescript @types/node @types/react @types/react-dom @types/jest```
 
-####  2. Добавление `tsconfig.json`
-Необходимо создать файл конфигурации tsconfig.json. Следующая команда поможет создать его:
+####  2. Add `tsconfig.json`
+You need to create configuration file `tsconfig.json`. You can create it using the following command:
 ```npx tsc --init```
 
-#### 3. Настройка tsconfig.json
+#### 3. Setup `tsconfig.json`
 ```
 {
   "compilerOptions": {
@@ -664,86 +653,64 @@ Enabling --strict enables --noImplicitAny, --noImplicitThis, --alwaysStrict, --s
 }
 ```
 
-Если вам нужна дополнительная информация по настройке tsconfig, ознакомьтесь с [параметрами компилятора](https://www.typescriptlang.org/docs/handbook/compiler-options.html#compiler-options).
+If you need additional information about setup tsconfig file, you can check [`compiler options`](https://www.typescriptlang.org/docs/handbook/compiler-options.html#compiler-options)
 
-#### 4. Превращение файлов JavaScript в файлы TypeScript
-Далее вам необходимо изменить расширение всех файлов проекта с .js(x) на .ts(x). Это позволит компилятору TypeScript начать индексировать эти файлы и использовать все возможности TypeScript.
+#### 4. Transform JS files into TS
+Then you need to change extensions of all your `.js(x)` files to `.ts(x)`.
 
-###### Отключение проверок:
-Чтобы отключить проверку типов для каждой строки, нужно добавить следующий комментарий над этой строкой:
+###### Disable type checking:
+If you need to disable type checking for any line. you need to add the following comment before the line:
 ```// @ts-ignore```
 
-Чтобы отключить проверку типа для всего, вы можете использовать:
+if you need to disable type checking for all files, you need to add the following comment at the beginning of the file:
 ```// @ts-nocheck```
 
-##### Полезные ссылки по TypeScript:
-- [Добавление TypeScript](https://create-react-app.dev/docs/adding-typescript/)
-- [Документация TypeScript](https://www.typescriptlang.org/docs/)
-- [Песочница TypeScript](https://www.typescriptlang.org/play?#code/)
+##### Useful links:
+- [Adding](https://create-react-app.dev/docs/adding-typescript/)
+- [Docs](https://www.typescriptlang.org/docs/)
+- [Playground](https://www.typescriptlang.org/play?#code/)
 
-***Шпаргалки по TypeScript***
-- [Все шпаргалки по React + TypeScript](https://github.com/typescript-cheatsheets/react)
+***Cheatsheets***
+- [React + TypeScript](https://github.com/typescript-cheatsheets/react)
 - [TypeScript 4.0 Cheat Sheet](https://www.sitepen.com/blog/typescript-cheat-sheet)
 - [A collection of cheatsheets](https://devhints.io/typescript)
 
-***Примеры приложений***
+***Applications examples***
 - [Create React App TypeScript Todo Example 2020](https://github.com/laststance/create-react-app-typescript-todo-example-2020)
 - [Ben Awad's 14 hour Fullstack React/GraphQL/TypeScript Tutorial](https://www.youtube.com/watch?v=I6ypD7qv3Z8)
 - [Cypress Realworld App](https://github.com/cypress-io/cypress-realworld-app)
 
 # Gitlab CI
 
-#### Подключение
-По дефолту файл gitlab-ci.yml(конфигурация CI) закомментирован, чтобы не тратить лишние минуты раннера
-Для того чтобы gitlab-ci пайплайны начали работать, нужно просто раскомментировать содержимое файла `.gitlab-ci.yml`
+#### Stages description
+* install - installing dependencies using `yarn`
+* lint - code linting `yarn lint:all`
+* test - running unit-tests using `yarn test:ci` script, build and displaying a coverage
+* pages - building the project `yarn build`
+* pages:deploy - deploy to gitlab-pages
 
-#### Описание стейджей
-* install - установка зависимостей при помощи `yarn`
-* lint - запуск линтеров командой `yarn lint:all`
-* test - запуск юнит-тестов командой `yarn test:ci`, генерация и **отображение** coverage
-* pages - запуск билда командой `yarn build`
-* pages:deploy - деплой на gitlab-pages
-
-# Полезности
+# Tricks
 
 #### CLI
-Для облегчения процесса создания множества файлов для компонентов и сторов(редьюсеров) были созданы следующие CLI-команды:
 
-1. Создание компонента
+For creating the component you can use the following `CLI-script`:
 ```bash
-yarn create:component {ComponentName}
+  yarn create:component MyComponent
 ```
+After using this script, the folder with your component's name will be appeared in your `src/components` folder. In this case it will be `src/components/MyComponent` folder.
 
-После выполнения этой команды в папке `src/components` будет создана папка `{ComponentName}` со всеми необохдимыми файлами(index, компонент, стили, тесты)
+#### VSCode-snippets
+There are list of available snippets for a quick creating some entities:
+* `mdocmp` - component
+* `mdstyle` - styled-components file
+* `mdcompunit` - unit-tests for component
+* `mdpage` - page
+* `mdhook` - custom hook
 
-2. Создание стора
-```bash
-yarn create:store {store-name}
-```
+This snippets is automatically available in your `VSCode` because they are setup for project. You can see and edit any snippet in the `.vscode/madboiler-snippets.code-snippets` file
 
-После выполнения этой команды в папке `src/store` будет создана папка `{store-name}` со всеми необохдимыми файлами(actions, reducer, selectors, tests)
-
-#### VSCode-сниппеты
-Для ускорения написания кода в VSCode существует замечательный инструмент - сниппеты. Они позволяют разворачивать заранее заготовленные куски кода в нужном месте после вызова определнного алиаса.
-
-Для ускорения разработки было созданно несколько полезных для проекта сниппетов:
-* `mdocmp` - компонент с нуля в пустом файле(с импортами и всем небходимым)
-* `mdstyle` - файл стилей с импортом styled-components и созданным элементом
-* `mdcompunit` - файл юнит-тестов для компонента
-* `mdpage` - файл страницы
-* `mdhook` - файл кастомного хука
-* `mdreducer` - файл редьюсера
-* `mdreducerunit` - файл юнит-тестов для редьюсера
-* `mdactiontype` - строка для создания actionType
-* `mdaction` - строка для создания actionCreator-функции
-* `mdasyncaction` - строка для создания async actionCreator-функции
-* `mdselector` - строка для создания селектора
-
-Сниппеты автоматически доступны в `VSCode`, поскольку настроены для проекта.
-Все сниппеты можно увидеть и изменить/добавить новые в файле `.vscode/madboiler-snippets.code-snippets`
-
-#### Полезные экстеншены для VSCode
-* `vscode-styled-components` - поддержка styled-components
+#### Useful VSCode extensions
+* `vscode-styled-components` - styled-components support
 * `Visual Studion IntelliCode` - intelliSense for VSCode(AI-assit)
 * `TODO Highlight` - highlight your #todos
 * `React PropTypes Intellisense` - intelliSense for PropTypes
