@@ -1,6 +1,6 @@
 # React MAD Boiler
 
-A React quick-start project boilerplate with everything you need inside.
+React quick-start project boilerplate with everything you need inside.
 
 # Translations
 - English
@@ -31,7 +31,7 @@ A React quick-start project boilerplate with everything you need inside.
 10. [Testing](#testing)
 11. [Formatting](#formatting)
 12. [JSDoc](#jsdoc)
-13. [Running on production](#running-on-production)
+13. [Running in production](#running-in-production)
 14. [Cypress](#cypress)
 15. [TypeScript](#typescript)
 16. [Gitlab CI](#gitlabci)
@@ -49,10 +49,10 @@ After, you just need to run the following command:
   yarn docker:dev
 ```
 
-When `Docker` complete to install and build your application - you will see `Compiled successfully` in your console. Your project is available on `3000` port, you can open it and start developing. - [http://localhost:3000](http://localhost:3000)
+When `Docker` installs all the necessary dependencies and builds your application, you will see `Compiled successfully` in your console. Your project is available on `3000` port; you can open it and start developing. - [http://localhost:3000](http://localhost:3000)
 
 ### Using npm dependencies
-If you don't have an opportunity and wish to use `docker` you can use default method for starting your project using [Node.JS and npm(yarn)](https://nodejs.org/en/)
+If you can't or don't want to use `docker` you can use the default method for starting your project using [Node.JS and npm(yarn)](https://nodejs.org/en/)
 
 1. Install dependencies
 ```bash
@@ -62,7 +62,7 @@ If you don't have an opportunity and wish to use `docker` you can use default me
 ```bash
   yarn start # or npm start
 ```
-The application is available on the address [http://localhost:3000](http://localhost:3000)
+The application is available on [http://localhost:3000](http://localhost:3000)
 
 # Structure
 ```
@@ -131,7 +131,7 @@ The application is available on the address [http://localhost:3000](http://local
 
 **src** - Main development folder
 
-**src/assets** - Static assets(images, fonts, etc.)
+**src/assets** - Static assets (images, fonts, etc.)
 
 **src/components** - Components folder
 **src/components/[ComponentName]** - A single component folder
@@ -157,9 +157,9 @@ The application is available on the address [http://localhost:3000](http://local
 **src/utils** - Utils folder(additional small reusable functions)
 
 # Routing
-We use [`react-router-dom`](https://reactrouter.com/web/guides/quick-start) for routing in application.
+We use [`react-router-dom`](https://reactrouter.com/web/guides/quick-start) for routing in the application.
 
-All the routes are storeded in the `src/Router.jsx` file.
+All the routes are stored in the `src/Router.jsx` file.
 
 ```javascript
 import React from 'react'
@@ -181,7 +181,7 @@ export default Router
 ```
 
 ### Adding a new route
-1. Create the new file in `src/pages` folder:
+1. Create the new file in the `src/pages` folder:
 
 ```javascript
 // NewPage.jsx
@@ -232,18 +232,18 @@ export default Router
 
 ### Additional information
 * [Documentation](https://reactrouter.com/web/guides/quick-start)
-* **Important** The pages are used only for logiacal separation of the parts of the application. Not to use the pages as the components. Allowed using [`react-helmet`](https://www.npmjs.com/package/react-helmet) for set up the page's meta-tags(title, description, etc.)
+* **Important** The pages are used only to logically separate different parts of the application. You don't need to use the pages as components. You can use [`react-helmet`](https://www.npmjs.com/package/react-helmet) to set up the page's meta-tags (title, description, etc.)
 
 # Components
-Working with the components it's recommended to use a modern attitude with functional components and hooks.
-**It's not recommended to use class components because they work too slowly(performance) and will soon be out of support**
+When you work with the components, it's recommended to use a modern approach with functional components and hooks.
+**It's not recommended to use class components because they work too slowly (performance) and won't be supported**
 
 ### Creating
-For creating the component you can use the following `CLI-script`:
+To create the component, you can use the following `CLI-script`:
 ```bash
   yarn create:component MyComponent
 ```
-After using this script, the folder with your component's name will be appeared in your `src/components` folder. In this case it will be `src/components/MyComponent` folder.
+After using this script, the folder with your component's name will appear in your `src/components` folder. In this case, it will be the `src/components/MyComponent` folder.
 
 ### Component's files description
 
@@ -283,7 +283,7 @@ function Wrapper() {
 export default Wrapper
 ```
 
-**[ComponentName].jsx** - view file(markup). Example:
+**[ComponentName].jsx** - view file (markup). Example:
 ```javascript
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -309,15 +309,15 @@ TodoList.propTypes = propTypes
 export default TodoList
 ```
 
-**[ComponentName].test.jsx** - unit-tests
-**[ComponentName].styles.js** - styles(styled-components by default)
+**[ComponentName].test.jsx** - unit tests
+**[ComponentName].styles.js** - styles (styled-components by default)
 
 ### Useful links
 * [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 * [Hooks](https://reactjs.org/docs/hooks-intro.html)
 
 # LocalStorage
-For working with localStorage you can use additional utilities: `loadState` and `saveState`
+To work with localStorage, you can use additional utilities: `loadState` and `saveState`
 Example:
 ```
 import { saveState, loadState }  from '../utils/localStorage'
@@ -327,7 +327,7 @@ const load = () => loadState('key')
 
 # Hooks
 #### React-use
-This is a library of additional react-hooks, which cover most of the needs and do not have to create the wheel every time.
+This is a library of additional react hooks that meet most of the needs so that you do not have to reinvent the wheel every time.
 [Hooks list](https://github.com/streamich/react-use)
 Most useful hooks:
 * [useDebounce](https://github.com/streamich/react-use/blob/master/docs/useDebounce.md)
@@ -339,9 +339,9 @@ Most useful hooks:
 * [useList](https://github.com/streamich/react-use/blob/master/docs/useList.md)
 
 #### Custom hooks
-Creating custom hooks - a very useful thing, which allows to reuse most of the part of code. If you see code, which will probably be reused in the future - separate it in the hook.
+Creating custom hooks is a very useful thing as it allows reusing large amounts of code. If you see code that will probably be reused in the future, hook it.
 
-This is an example of usage simple custom hook, implementing work with API:
+This is an example of usaging a simple custom hook implementing work with API:
 ```javascript
 import { useState } from 'react'
 import { useList, useToggle } from 'react-use'
@@ -376,19 +376,19 @@ export default useFetchImages
 ```
 
 # Utils
-Utilities are stored in the `src/utils` folder in the separated files.
+Utilities are stored in the `src/utils` folder in separate files.
 
 #### Available utilities
-* `camelToSnakeCase` and `snakeToCamelCase` - transformation string into various styles of writing phrases without spaces or punctuation
-* `normalizeObjectKeys` - transformation all the object field keys using `snakeToCamelCase`
-* `normalizeCollectionKeys` - transformation all the elements(Element should be an object) of the array using `normalizeObjectKeys`
+* `camelToSnakeCase` and `snakeToCamelCase` - transformation of a string into various styles of writing phrases without spaces or punctuation
+* `normalizeObjectKeys` - transformation of all the object fields (keys) using `snakeToCamelCase`
+* `normalizeCollectionKeys` - transformation of all the elements (Element should be an object) of the array using `normalizeObjectKeys`
 * `getRequestParams` - function for getting values of get-parameters from location.search.
 * `localStorage` - utilities for working with localStorage
 
 **PS: The list will be updated**
 
 # Axios
-For working with rest API most useful library is [`axios`](https://github.com/axios/axios) with `async/await` syntax.
+In working with API requests, the most useful library is [`axios`](https://github.com/axios/axios) with `async/await` syntax.
 
 #### `axios` configuration
 `axios` configuration is in the `src/config/api.js` file. 
@@ -415,7 +415,7 @@ authenticate()
 **Note: Always try to use [async/await](https://learn.javascript.ru/async-await) syntax**
 
 # Environment variables
-For working with environment variables we need to use some config files:
+To work with environment variables, we need to use some config files:
 * `.env.example` - for storing examples of variables
 * `.env` - for variables
 
@@ -428,8 +428,8 @@ REACT_APP_API_BASE_URL=
 ```
 REACT_APP_API_BASE_URL=https://google.com/api
 ```
-3. Restart the project(required)
-4. Add the variable into the config(`src/config/index.js`)
+3. Restart the project (required)
+4. Add the variable into the config (`src/config/index.js`)
 ```javascript
 export const config = {
   API_URL: process.env.REACT_APP_API_BASE_URL,
@@ -441,81 +441,81 @@ axios.get(config.API_URL)
 ```
 
 **Note: Don't forget to restart the project after adding/updating any variables**
-**Note 2: Environment variables should be ALWAYS started by `REACT_APP_`, otherwise they won't work**
+**Note 2: Environment variables should be ALWAYS started by `REACT_APP_`; otherwise, they won't work**
 
 # Styles
-For writing styles we can use some approach:
+To write styles, we can use several approaches:
 * Scss/BEM - Default styling
-* Css-In-JS([styled-components](https://styled-components.com/docs/advanced#theming)) - recommended variant that is the most simple and comfortable, than the previous.
+* Css-In-JS ([styled-components](https://styled-components.com/docs/advanced#theming)) - a recommended option that is simpler and more convenient than the previous one.
 
 # Testing
-For testing the components(units) is used `Jest` and `React-testing-library`.
+In testing the components (unit testing), `Jest` and `React-testing-library` are used.
 
 #### Useful links
 [Jest](https://jestjs.io/docs/en/getting-started)
 [Testing-library](https://testing-library.com/)
 [React-testing-library](https://testing-library.com/docs/react-testing-library/intro)
 
-#### Unit-tests running
-There are some scripts for running tests:
+#### Running unit tests
+There are several scripts to run tests:
 `yarn test` - watch-mode
 `yarn test:coverage` - watch-mode+coverage
 `yarn test:ci` - without watch-mode + coverage + disable coloring output
 
 #### Coverage
 Coverage generates after running `yarn test:coverage` command.
-You can see expanded coverage in HTML format in the `./coverage` folder.
+You can see expanded coverage in the HTML format in the `./coverage` folder.
 
-**Note: For unit-tests is also set minimal coverage threshold. If coverage is less than 80% - the tests will fail**
+**Note: Unit tests also have a minimal coverage threshold. If coverage is less than 80%, the tests will fail**
 
 # Formatting
-Linters are responsible for code cleaning. They allow to except pushing shitcode into repository.
+Linters are to keep code clean. They prevent shitcode from getting into a repository.
 #### ESLint
 [Eslint](https://eslint.org/) is used for linting Javascript code.
 [Airbnb](https://www.npmjs.com/package/eslint-config-airbnb) config is used as default.
 
-For running linter you can use the following npm-scripts:
-`yarn lint:js` - for running linter
-`yarn lint:js:fix` - for running linter with autofix
+To run a linter, you can use the following npm-scripts:
+`yarn lint:js` - to run a linter
+`yarn lint:js:fix` - to run a linter with autofix
 
-#### CSS(styled-components)
-For linting css code is used [stylelint](https://stylelint.io/)
-The linter check your code for typos or spelling mistakes.
+#### CSS (styled-components)
+To lint css code, [stylelint](https://stylelint.io/) is used.
+The linter checks your code for typos and spelling mistakes.
 
-For running the linter you can use `yarn lint:css` script
+To run the linter, you can use `yarn lint:css` script
 
 ### Airbnb styleguide links
 - [Javascript](https://github.com/airbnb/javascript)
 - [React](https://github.com/airbnb/javascript/tree/master/react)
 
-**Note: For running both linters you can use `yarn lint:all` script**
+**Note: To run both linters, you can use `yarn lint:all` script**
 
 # JSDoc
-The optimal solution to make your code more readable and clean is using JSDoc. The project doen't use JSDoc by default, but you can easily add it usuing the following helpful links:
+The optimal solution to make your code more readable and cleaner is to use JSDoc. The project doen't use JSDoc by default, but you can easily add it using the following helpful links:
 [Documentation](https://jsdoc.app/)
 [eslint-plugin](https://www.npmjs.com/package/eslint-plugin-jsdoc)
 
-# Running on production
-For running the project on production you can use `yarn docker:prod` script. This script is doing the following steps:
-* Downloading dependencies
+# Running in production
+To run the project in production, you can use `yarn docker:prod` script. This script does the following steps:
+* Download dependencies
 * Build the project(`yarn build`)
-* Run nginx for serve static
+* Run nginx to serve static content
   
 # Cypress
-Cypress is framework for end-to-end testing based on Javascript.
+Cypress is a framework for end-to-end testing based on Javascript.
 
 ##### Why Cypress?
-You can have 100% code coverage with unit-tests, which test all your components separately, but your application can still fail, when the components start to interact with each other. To prevent possible fails, you need to use e2e tests with Cypress. Cypress can test everything that works in a browser.
+You can have 100% code coverage with unit tests, which test all your components separately, but your application can still fail when the components start to interact with each other. To prevent possible fails, you need to use e2e tests with Cypress. Cypress can test everything that works in a browser.
 
 ### Start working with Cypress
 
-##### 1. Check [system preferences](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements)
+##### 1. Check [system requirements](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements)
 
 ##### 2. Install Cypress:
 ```yarn add cypress --dev``` 
 
 ##### 3. Running Cypress
-For running `Cypress Test Runner` you need to execute the following command:
+To run `Cypress Test Runner`, you need to execute the following command:
 ```yarn run cypress open```
 
 ### How to setup and run Cypress tests in CI?
@@ -594,7 +594,7 @@ electrons-5:
 Full documetation of using Cypress with CI you can find [here](https://docs.cypress.io/guides/guides/continuous-integration.html#Examples).
 
 ##### 2. Running Cypress in CI
-For run cypress in your CI, you just need to do the following steps:
+To run Cypress in your CI, you just need to do the following steps:
 
 2.1. Install
 ```yarn add cypress --dev```
@@ -604,7 +604,7 @@ For run cypress in your CI, you just need to do the following steps:
 
 ##### 3. [For record tests](https://docs.cypress.io/guides/guides/continuous-integration.html#To-record-tests)
 1. [Setup your project](https://docs.cypress.io/guides/dashboard/projects.html#Setup)
-2. Add `--record` flag when you are running `cypress run` in the CI.
+2. Add `--record` flag when you are running `cypress run` in your CI.
 `cypress run --record --key = abc123`
 
 [Full documentation](https://docs.cypress.io/guides/dashboard/introduction.html#Features)
@@ -623,7 +623,7 @@ For run cypress in your CI, you just need to do the following steps:
 ```yarn add typescript @types/node @types/react @types/react-dom @types/jest```
 
 ####  2. Add `tsconfig.json`
-You need to create configuration file `tsconfig.json`. You can create it using the following command:
+You need to create the configuration file `tsconfig.json`. You can create it using the following command:
 ```npx tsc --init```
 
 #### 3. Setup `tsconfig.json`
@@ -653,16 +653,16 @@ Enabling --strict enables --noImplicitAny, --noImplicitThis, --alwaysStrict, --s
 }
 ```
 
-If you need additional information about setup tsconfig file, you can check [`compiler options`](https://www.typescriptlang.org/docs/handbook/compiler-options.html#compiler-options)
+If you need additional information about setting up the tsconfig file, you can check [`compiler options`](https://www.typescriptlang.org/docs/handbook/compiler-options.html#compiler-options)
 
 #### 4. Transform JS files into TS
-Then you need to change extensions of all your `.js(x)` files to `.ts(x)`.
+Then, you need to change the extensions of all your `.js(x)` files to `.ts(x)`.
 
 ###### Disable type checking:
-If you need to disable type checking for any line. you need to add the following comment before the line:
+If you need to disable type checking for any line, you need to add the following comment before the line:
 ```// @ts-ignore```
 
-if you need to disable type checking for all files, you need to add the following comment at the beginning of the file:
+If you need to disable type checking for all files, you need to add the following comment at the beginning of the file:
 ```// @ts-nocheck```
 
 ##### Useful links:
@@ -685,7 +685,7 @@ if you need to disable type checking for all files, you need to add the followin
 #### Stages description
 * install - installing dependencies using `yarn`
 * lint - code linting `yarn lint:all`
-* test - running unit-tests using `yarn test:ci` script, build and displaying a coverage
+* test - running unit tests using `yarn test:ci` script; building and **displaying** coverage
 * pages - building the project `yarn build`
 * pages:deploy - deploy to gitlab-pages
 
@@ -693,21 +693,21 @@ if you need to disable type checking for all files, you need to add the followin
 
 #### CLI
 
-For creating the component you can use the following `CLI-script`:
+To create the component, you can use the following `CLI-script`:
 ```bash
   yarn create:component MyComponent
 ```
-After using this script, the folder with your component's name will be appeared in your `src/components` folder. In this case it will be `src/components/MyComponent` folder.
+After using this script, the folder with your component's name will appear in your `src/components` folder. In this case, it will be the `src/components/MyComponent` folder.
 
 #### VSCode-snippets
-There are list of available snippets for a quick creating some entities:
+Here is a list of available snippets to quickly create some entities:
 * `mdocmp` - component
 * `mdstyle` - styled-components file
 * `mdcompunit` - unit-tests for component
 * `mdpage` - page
 * `mdhook` - custom hook
 
-This snippets is automatically available in your `VSCode` because they are setup for project. You can see and edit any snippet in the `.vscode/madboiler-snippets.code-snippets` file
+These snippets are automatically available in your `VSCode` because they are set up for project. You can see and edit any snippet in the `.vscode/madboiler-snippets.code-snippets` file
 
 #### Useful VSCode extensions
 * `vscode-styled-components` - styled-components support
