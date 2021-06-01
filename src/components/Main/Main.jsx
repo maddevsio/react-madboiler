@@ -9,7 +9,7 @@ export default function Main() {
   return (
     <Wrapper>
       <Logo src={logo} alt="MAD DEVS" />
-      <Title>React MAD Boiler</Title>
+      <Title>React-madboiler</Title>
       <Description>
         Simple boilerplate for
         <Link href="https://ru.reactjs.org/" target="_blank" color="react">
