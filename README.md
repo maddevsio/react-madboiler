@@ -1,6 +1,55 @@
-# React MAD Boiler
+# React-madboiler
 
-React quick-start project boilerplate with everything you need inside.
+[![Developed by Mad Devs](https://maddevs.io/badge-dark.svg)](https://maddevs.io?utm_source=github&utm_medium=madboiler)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![JS](https://img.shields.io/github/languages/top/maddevsio/react-madboiler)
+
+![image](https://user-images.githubusercontent.com/35951221/120291263-f1344a00-c2e4-11eb-9a85-d0201af47802.png)
+
+## Introduction
+Boilerplate is a starter kit for quick development start, which allows you to
+save time on routine project setup and start developing right away.
+
+### Core features
+The main advantage of our boilerplate is that there is nothing unnecessary in it.
+Our boilerplate does not use `Redux`, there are no unnecessary libraries that only complicate
+life at the start of the project (such as `Cypress`, or `Typescript`).
+
+We use the minimum number of dependencies necessary to concentrate on `React` and not get distracted
+on other things. But we also really like to keep our code clean and pretty, so our
+boilerplate has everything you need to do that (`ESLint` and `Prettier` with strong configs). 
+We also really love the `CSS-in-JS` approach and
+we try to use it in all our React projects, so the boilerplate also uses `styled-components`.
+And, of course, we love writing unit tests and try to cover our applications with tests as much as possible. To do this
+we mostly use `Jest` and `testing-library`.
+
+- Just `React` and nothing extra
+- Clean code with `ESLint` + `Prettier`
+- Quality tests with `Jest` + `testing-library`
+- CSS-in-JS approach - `styled-components`
+- Modern components using hooks - `react-use`
+- Reliability of components using `prop-types`
+
+### The problem and its solution
+When creating a new project in `React` it is very common to be faced with
+routine work in the form of creating a project with `CRA`,
+installing a large number of third-party dependencies and setting them up to correctly
+with each other.
+
+Our boilerplate solves this problem very easily, it has everything for a quick start of the project.
+You do not need to worry about the quality of code or the configuration of the testing environment. Our boilerplate
+already use the latest tools to maintain code quality (`ESLint`, `Prettier`).
+Also we have preconfigured `Router`, a library for `CSS-in-JS` and modern hooks `React-use`.
+You can just clone our boiler and start developing.
+
+### Who is this boilerplate for?
+This boilerplate is designed mostly for junior developers,
+who find it difficult to set up a project on their own. Setting up a project in such a case
+can take quite a lot of time, which would be better spent on development
+or research the task.
+In order to relieve developers from the routine work of setting up the project and
+dependencies we decided to create this boilerplate with all the
+necessary tools to quickly setup and start development.
 
 # Translations
 - English
@@ -112,49 +161,45 @@ The application is available on [http://localhost:3000](http://localhost:3000)
 │   ├── utils
 ```
 
-**README.md** - Project description
-**package.json** - Npm configuration file
-**yarn.lock** - Dependencies lockfile
-**docker-compose.dev.yml** - docker-compose config for development
-**docker-compose.prod.yml** - docker-compose config for build production
-**.env.example** - environment examples file
-**.eslintrc** - ESLint config
-**.gitlab-ci.yml** - Gitlab CI config
-**.stylelintrc** - Stylelint config
+- **README.md** - Project description
+- **package.json** - Npm configuration file
+- **yarn.lock** - Dependencies lockfile
+- **docker-compose.dev.yml** - docker-compose config for development
+- **docker-compose.prod.yml** - docker-compose config for build production
+- **.env.example** - environment examples file
+- **.eslintrc** - ESLint config
+- **.gitlab-ci.yml** - Gitlab CI config
+- **.stylelintrc** - Stylelint config
 
-**public** - Folder with static files
-**cli** - Helpful scripts(CLI)
-**docs** - Additional documentation
-**docker** - Dockerfiles' folder
-**docker/Dockerfile.dev** - config for dev mode
-**docker/Dockerfile.prod** - config for prod mode
 
-**src** - Main development folder
+- **public** - Folder with static files
+- **cli** - Helpful scripts(CLI)
+- **docs** - Additional documentation
+- **docker** - Dockerfiles' folder
+- **docker/Dockerfile.dev** - config for dev mode
+- **docker/Dockerfile.prod** - config for prod mode
 
-**src/assets** - Static assets (images, fonts, etc.)
 
-**src/components** - Components folder
-**src/components/[ComponentName]** - A single component folder
-**src/components/[ComponentName]/index.jsx** - Core file(logic, default export)
-**src/components/[ComponentName]/[ComponentName].jsx** - View(markup)
-**src/components/[ComponentName]/[ComponentName].test.jsx** - Unit-tests
-**src/components/[ComponentName]/[ComponentName].styles.js** - Styles
+- **src** - Main development folder
+- **src/assets** - Static assets (images, fonts, etc.)
+  
 
-**src/config** - Configuration files(axios, theme, etc.)
+- **src/components** - Components folder
+- **src/components/[ComponentName]** - A single component folder
+- **src/components/[ComponentName]/index.jsx** - Core file(logic, default export)
+- **src/components/[ComponentName]/[ComponentName].jsx** - View(markup)
+- **src/components/[ComponentName]/[ComponentName].test.jsx** - Unit-tests
+- **src/components/[ComponentName]/[ComponentName].styles.js** - Styles
 
-**src/pages** - Pages folder(routes)
 
-**src/hocs** - Higher Order Components (HOCs)
-
-**src/hooks** - React-hooks
-
-**src/index.js** - Core application file(entry point)
-
-**src/Router.jsx** - Main router
-
-**src/test.utils.js** - Testing utils(testing-library)
-
-**src/utils** - Utils folder(additional small reusable functions)
+- **src/config** - Configuration files(axios, theme, etc.)
+- **src/pages** - Pages folder(routes)
+- **src/hocs** - Higher Order Components (HOCs)
+- **src/hooks** - React-hooks
+- **src/index.js** - Core application file(entry point)
+- **src/Router.jsx** - Main router
+- **src/test.utils.js** - Testing utils(testing-library)
+- **src/utils** - Utils folder(additional small reusable functions)
 
 # Routing
 We use [`react-router-dom`](https://reactrouter.com/web/guides/quick-start) for routing in the application.
