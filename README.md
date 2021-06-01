@@ -1,5 +1,8 @@
 # React MAD Boiler
 
+![image](https://user-images.githubusercontent.com/35951221/120283002-867f1080-c2dc-11eb-9980-ff8e955cadad.png)
+
+
 React quick-start project boilerplate with everything you need inside.
 
 # Translations
