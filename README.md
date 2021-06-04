@@ -113,6 +113,8 @@ If you can't or don't want to use `docker` you can use the default method for st
 ```
 The application is available on [http://localhost:3000](http://localhost:3000)
 
+[![asciicast](https://asciinema.org/a/HovYHVCh9SEVi1cIoGOqKziow.svg)](https://asciinema.org/a/HovYHVCh9SEVi1cIoGOqKziow)
+
 # Structure
 ```
 .
@@ -743,6 +745,8 @@ To create the component, you can use the following `CLI-script`:
   yarn create:component MyComponent
 ```
 After using this script, the folder with your component's name will appear in your `src/components` folder. In this case, it will be the `src/components/MyComponent` folder.
+
+[![asciicast](https://asciinema.org/a/sRLnKJsKhPqX8fseqxeghrkMa.svg)](https://asciinema.org/a/sRLnKJsKhPqX8fseqxeghrkMa)
 
 #### VSCode-snippets
 Here is a list of available snippets to quickly create some entities:
